@@ -1,0 +1,32 @@
+# @package _global_
+# WildReceipt Dataset Configuration (Phase 2 addendum, PI-approved 2026-07-05)
+# Native box-level annotations — no entity-string alignment step exists
+# (the SROIE gate failure mode is structurally impossible).
+
+dataset:
+  name: wildreceipt
+  task: ner  # Key Information Extraction as token NER
+
+  # Label schema from wildreceipt/processed/label_list.json (derived from
+  # class_list.txt, never hardcoded): 24 semantic classes x B/I + O.
+  # Others -> O; Ignore boxes excluded at prep (counts in stats.json).
+  num_labels: 49
+
+  # Dataset statistics (documents; official split preserved)
+  stats:
+    num_train: 1167  # official 1267 minus 100-doc val_es carve (seed 42)
+    num_val_es: 100  # early stopping ONLY, persisted splits/wildreceipt_val_es.json
+    num_test: 472
+    total_documents: 1739
+    language: english
+
+  # Processing
+  processing:
+    max_length: 512
+    image_size: [224, 224]
+
+  # Evaluation
+  metrics:
+    primary: f1
+    secondary: [precision, recall]
+    evaluation_mode: seqeval

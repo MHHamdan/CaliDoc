@@ -1,0 +1,42 @@
+# @package _global_
+# LayoutLMv3 Model Configuration
+
+model:
+  name: layoutlmv3
+  type: ocr_dependent
+
+  # HuggingFace model ID
+  pretrained_name: microsoft/layoutlmv3-large
+
+  # Model architecture
+  architecture:
+    hidden_size: 1024
+    num_hidden_layers: 24
+    num_attention_heads: 16
+    intermediate_size: 4096
+    max_position_embeddings: 514
+    max_2d_position_embeddings: 1024
+
+  # Vision encoder
+  vision:
+    image_size: 224
+    patch_size: 16
+    num_channels: 3
+
+  # Task-specific heads
+  task_heads:
+    vqa:
+      type: extractive
+      num_labels: null  # Set from dataset
+    ner:
+      type: token_classification
+      num_labels: null  # Set from dataset
+
+  # Loading options
+  load_pretrained: true
+  freeze_vision_encoder: false
+  freeze_text_encoder: false
+
+  # Memory optimization
+  gradient_checkpointing: true
+  use_flash_attention: true

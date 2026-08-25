@@ -1,0 +1,28 @@
+# @package _global_
+# Donut Model Configuration
+# For generative document understanding (DocVQA)
+
+model:
+  name: donut
+  pretrained_name: naver-clova-ix/donut-base-finetuned-docvqa
+
+  # Model architecture
+  architecture:
+    type: encoder_decoder
+    encoder: swin_transformer
+    decoder: mbart
+
+  # Image processing
+  image:
+    size: [1280, 960]  # Donut uses larger images
+    patch_size: 4
+    window_size: 7
+
+  # Generation settings
+  generation:
+    max_length: 128
+    num_beams: 1
+    do_sample: false
+
+  # Task-specific
+  task_prompt: "<s_docvqa>"

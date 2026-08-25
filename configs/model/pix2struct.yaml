@@ -1,0 +1,29 @@
+# @package _global_
+# Pix2Struct Model Configuration
+# For generative document understanding (DocVQA)
+
+model:
+  name: pix2struct
+  pretrained_name: google/pix2struct-docvqa-base
+
+  # Model architecture
+  architecture:
+    type: encoder_decoder
+    encoder: vision_transformer
+    decoder: t5
+
+  # Image processing (patched representation)
+  image:
+    max_patches: 2048  # Maximum number of image patches
+    patch_size: 16
+
+  # Generation settings
+  generation:
+    max_new_tokens: 128
+    num_beams: 1
+    do_sample: false
+
+  # Training settings
+  training:
+    learning_rate: 5e-5
+    warmup_ratio: 0.1

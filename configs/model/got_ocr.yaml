@@ -1,0 +1,46 @@
+# @package _global_
+# GOT-OCR 2.0 Model Configuration
+
+model:
+  name: got_ocr
+  type: ocr_vlm
+
+  # Model identifier
+  pretrained_name: stepfun-ai/GOT-OCR2_0
+
+  # Model architecture (580M parameters)
+  architecture:
+    hidden_size: 1024
+    num_hidden_layers: 24
+    num_attention_heads: 16
+    vocab_size: 151851
+    max_sequence_length: 8192
+
+  # Vision encoder
+  vision:
+    image_size: 1024
+    encoder_type: sam_vit_h
+    hidden_size: 1280
+    num_layers: 32
+
+  # OCR capabilities
+  ocr:
+    support_handwriting: true
+    support_formulas: true
+    support_tables: true
+    support_charts: true
+    output_format: markdown  # or plain, html
+
+  # Loading options
+  load_pretrained: true
+  trust_remote_code: true
+
+  # Memory optimization
+  gradient_checkpointing: true
+  use_flash_attention: true
+
+  # Generation settings
+  generation:
+    max_new_tokens: 2048
+    do_sample: false
+    temperature: 0.0

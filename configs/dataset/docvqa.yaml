@@ -1,0 +1,43 @@
+# @package _global_
+# DocVQA Dataset Configuration
+
+dataset:
+  name: docvqa
+  task: vqa
+
+  # Dataset source - use local preprocessed data with OCR
+  # Local data at: data/docvqa/train_merged, data/docvqa/val_merged
+  source: local  # or HuggingFaceM4/DocumentVQA
+  local_paths:
+    train: train_merged
+    validation: val_merged
+    test: test  # Use HuggingFace for test (no OCR needed for eval)
+
+  split_names:
+    train: train
+    validation: validation
+    test: test
+
+  # Dataset statistics (after OCR preprocessing)
+  stats:
+    num_train: 34463  # Some may have failed OCR
+    num_val: 5349
+    num_test: 5188
+    num_images: 12767
+    language: english
+
+  # Processing
+  processing:
+    max_length: 512
+    doc_stride: 128
+    image_size: [224, 224]
+
+  # Evaluation
+  metrics:
+    primary: anls  # Average Normalized Levenshtein Similarity
+    secondary: [exact_match, f1]
+
+  # For conformal prediction
+  calibration:
+    split_ratio: 0.2  # 20% of validation for calibration
+    random_seed: 42

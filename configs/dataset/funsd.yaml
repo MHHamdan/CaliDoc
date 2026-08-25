@@ -1,0 +1,32 @@
+# @package _global_
+# FUNSD Dataset Configuration (Phase 2, verified bundle)
+
+dataset:
+  name: funsd
+  task: ner  # Named Entity Recognition / Information Extraction
+
+  # Data source: verified Phase 2 bundle (paths.bundle_dir).
+  # Label schema comes from funsd/processed/label_list.json (7 BIO labels).
+  num_labels: 7
+
+  # Dataset statistics (documents)
+  # Train shrinks 149 -> 134 because the persisted 15-doc es_holdout is
+  # removed; an F1 dip vs the old 83.80 is expected protocol cost.
+  stats:
+    num_train: 134
+    num_es_holdout: 15  # early stopping + temperature ONLY
+    num_test: 50
+    total_documents: 199
+    language: english
+
+  # Processing
+  processing:
+    max_length: 512
+    image_size: [224, 224]
+    use_ocr: true  # Use provided OCR annotations
+
+  # Evaluation
+  metrics:
+    primary: f1  # Entity-level F1
+    secondary: [precision, recall]
+    evaluation_mode: seqeval

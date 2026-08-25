@@ -1,0 +1,30 @@
+# @package _global_
+# WildReceipt clean-calibration protocol variant (reviewer request 2026-08-15).
+# Identical parquets and schema to `wildreceipt`; the difference is the split
+# protocol: a persisted 100-doc conformal-calibration split is carved from the
+# TRAINING partition (disjoint from val_es) and excluded from fitting, so the
+# official 472-doc test set is used only for final evaluation.
+# Requires its own retrained checkpoint.
+
+dataset:
+  name: wildreceipt_traincal
+  task: ner
+
+  num_labels: 49
+
+  stats:
+    num_train: 1067   # official 1267 minus 100 val_es minus 100 traincal cal
+    num_val_es: 100   # early stopping ONLY (splits/wildreceipt_val_es.json)
+    num_cal: 100      # conformal calibration ONLY (splits/wildreceipt_traincal_cal.json)
+    num_test: 472     # final evaluation ONLY (untouched official test)
+    total_documents: 1739
+    language: english
+
+  processing:
+    max_length: 512
+    image_size: [224, 224]
+
+  metrics:
+    primary: f1
+    secondary: [precision, recall]
+    evaluation_mode: seqeval

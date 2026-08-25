@@ -1,0 +1,74 @@
+# @package _global_
+# SOTA Training Configuration
+# Includes all enhancements: EMA, LLRD, Label Smoothing, Focal Loss
+
+training:
+  # More epochs for small datasets
+  epochs: 50
+
+  # Batch settings
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  effective_batch_size: 32
+
+  # Optimizer - optimized for transformer fine-tuning
+  optimizer:
+    name: adamw
+    learning_rate: 1.5e-5  # Lower for stability
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+    eps: 1e-8
+
+  # Learning rate scheduler
+  scheduler:
+    name: cosine
+    warmup_ratio: 0.15  # More warmup for stability
+    min_lr_ratio: 0.0
+
+  # Gradient clipping
+  max_grad_norm: 1.0
+
+  # Checkpointing
+  save_strategy: epoch
+  save_total_limit: 5
+  load_best_model_at_end: true
+  metric_for_best_model: eval_f1
+
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 15
+    threshold: 0.0005
+
+  # Loss weights
+  losses:
+    task_weight: 1.0
+    calibration_weight: 0.0
+    quality_weight: 0.0
+    routing_weight: 0.0
+
+  # === SOTA ENHANCEMENTS ===
+
+  # EMA (Exponential Moving Average)
+  # Smooths weight updates for better generalization
+  use_ema: true
+  ema_decay: 0.999
+
+  # LLRD (Layer-wise Learning Rate Decay)
+  # Lower layers get smaller LR (pretrained features)
+  # Higher layers get larger LR (task-specific)
+  llrd_rate: 0.95  # Each layer gets 95% of the next layer's LR
+
+  # Label smoothing for regularization
+  # Prevents overconfident predictions
+  label_smoothing: 0.1
+
+  # Focal loss for class imbalance (optional)
+  use_focal_loss: false
+  focal_gamma: 2.0
+
+  # Robustness/augmentation
+  robustness:
+    augmentation:
+      enabled: false
+      probability: 0.3

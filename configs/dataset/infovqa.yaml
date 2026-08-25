@@ -1,0 +1,34 @@
+# @package _global_
+# InfoVQA Dataset Configuration
+# Infographic VQA benchmark
+
+dataset:
+  name: infovqa
+  task: vqa
+
+  # Dataset source
+  source: docvqa/infographicvqa
+
+  # Dataset statistics
+  stats:
+    num_train: 23946
+    num_val: 2801
+    num_test: 3288
+    total_questions: 30035
+    language: english
+
+  # Processing
+  processing:
+    max_length: 512
+    doc_stride: 128
+    image_size: [224, 224]
+
+  # Evaluation
+  metrics:
+    primary: anls
+    secondary: [exact_match]
+
+  # Calibration
+  calibration:
+    split_ratio: 0.2
+    random_seed: 42

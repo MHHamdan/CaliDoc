@@ -1,0 +1,20 @@
+# CaliDoc -- dependencies for the POST-HOC reproduction path only.
+#
+# Everything in the paper's tables and figures is computed from the committed
+# temperature-scaled probability caches (results/cache/*.npz). That path needs
+# no GPU, no PyTorch, and no model checkpoint:
+#
+#   python3 scripts/span_crc.py --all
+#   python3 scripts/multiplicity_analysis.py
+#   python3 scripts/spancrc_sensitivity.py
+#   python3 scripts/boundary_escape_power.py
+#   python3 scripts/first_token_entity_cp.py
+#   python3 scripts/emit_result_macros.py
+#   python3 scripts/emit_wacv_supplementary.py
+#
+# Use requirements.txt instead if you want to re-train the backbones or
+# regenerate the caches from a checkpoint (scripts/cache_probs.py).
+
+numpy>=1.24
+scipy>=1.10          # used by the label-error baselines
+matplotlib>=3.7      # figure emitters only

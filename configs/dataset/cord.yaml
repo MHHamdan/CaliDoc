@@ -1,0 +1,33 @@
+# @package _global_
+# CORD Dataset Configuration (Phase 2, verified bundle)
+
+dataset:
+  name: cord
+  task: ner  # NER/Information Extraction
+
+  # Data source: verified Phase 2 bundle (paths.bundle_dir).
+  # HF revision pinned in the bundle PROVENANCE: 7f0115a4b758a71d6473b8d085751692da2fef98
+  # Label schema comes from cord/processed/label_list.json — never hardcoded.
+  # 54 BIO labels / 29 fields; CORD gold contains ZERO O tokens (the old
+  # 61-label list with O was the Phase 1 label-schema bug, legacy_invalid).
+  num_labels: 54
+
+  # Dataset statistics (documents)
+  stats:
+    num_train: 800
+    num_val_es: 50   # early stopping + temperature ONLY
+    num_cal: 50      # conformal calibration ONLY (never seen at fit stage)
+    num_test: 100
+    total_documents: 1000
+    languages: [korean, indonesian, japanese, english]
+
+  # Processing
+  processing:
+    max_length: 512
+    image_size: [224, 224]
+
+  # Evaluation
+  metrics:
+    primary: f1
+    secondary: [precision, recall]
+    evaluation_mode: seqeval

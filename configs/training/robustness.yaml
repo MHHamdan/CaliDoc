@@ -1,0 +1,84 @@
+# @package _global_
+# Robustness Training Configuration
+# Includes data augmentation and adversarial training
+
+training:
+  # Training epochs
+  epochs: 25
+
+  # Batch settings
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  effective_batch_size: 32
+
+  # Optimizer
+  optimizer:
+    name: adamw
+    learning_rate: 5e-5
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+    eps: 1e-8
+
+  # Learning rate scheduler
+  scheduler:
+    name: cosine
+    warmup_ratio: 0.1
+    min_lr_ratio: 0.01
+
+  # Gradient clipping
+  max_grad_norm: 1.0
+
+  # Loss weights
+  losses:
+    task_weight: 1.0
+    calibration_weight: 0.1
+    quality_weight: 0.05
+    routing_weight: 0.05
+    consistency_weight: 0.1  # For robustness regularization
+
+  # Robustness-specific settings
+  robustness:
+    enabled: true
+
+    # Augmentation during training
+    augmentation:
+      enabled: true
+      probability: 0.5
+      perturbations:
+        - gaussian_blur
+        - gaussian_noise
+        - jpeg_compression
+        - brightness
+        - contrast
+        - rotation
+
+    # Curriculum learning (mild -> severe)
+    curriculum:
+      enabled: true
+      start_severity: 1
+      end_severity: 3
+      warmup_epochs: 5
+
+    # Consistency regularization
+    consistency:
+      enabled: true
+      temperature: 0.5
+      weight: 0.1
+
+    # AugMax-style worst-case training
+    augmax:
+      enabled: false  # Optional, computationally expensive
+      num_samples: 4
+
+  # Checkpointing
+  save_strategy: epoch
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: eval_robust_accuracy
+
+# Calibration settings (merged at root level)
+calibration:
+  enabled: true
+  alpha: 0.1
+  score_type: structure_aware
+  cal_split: 0.2

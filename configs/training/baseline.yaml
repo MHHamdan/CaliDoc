@@ -1,0 +1,53 @@
+# @package _global_
+# Baseline Training Configuration
+
+training:
+  # Training epochs
+  epochs: 20
+
+  # Batch settings
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  effective_batch_size: 32  # batch_size * gradient_accumulation_steps
+
+  # Optimizer
+  optimizer:
+    name: adamw
+    learning_rate: 5e-5
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+    eps: 1e-8
+
+  # Learning rate scheduler
+  scheduler:
+    name: cosine
+    warmup_ratio: 0.1
+    min_lr_ratio: 0.01
+
+  # Gradient clipping
+  max_grad_norm: 1.0
+
+  # Checkpointing
+  save_strategy: epoch
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: eval_f1
+
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 5
+    threshold: 0.001
+
+  # Loss weights (baseline: only task loss)
+  losses:
+    task_weight: 1.0
+    calibration_weight: 0.0
+    quality_weight: 0.0
+    routing_weight: 0.0
+
+  # Robustness/augmentation settings
+  robustness:
+    augmentation:
+      enabled: false
+      probability: 0.5

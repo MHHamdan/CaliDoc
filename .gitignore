@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------- local only
+# Paper writing, planning notes, prompts, and AI-assistant config stay on this
+# machine. Nothing under these paths is ever pushed.
+docs/
+local/
+.claude/
+CLAUDE.md
+*.prompt
+*.prompt.md
+prompts/
+
+# ------------------------------------------------------- data and artifacts
+data/
+data_bundle/
+data_bundle_sroie_repaired/
+outputs/
+checkpoints/
+results/
+logs/
+build/
+release/
+*.tar
+*.tar.gz
+*.sha256
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# ------------------------------------------------------------------ LaTeX
+*.aux
+*.bbl
+*.blg
+*.brf
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.toc
+
+# ------------------------------------------------------------------ Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+
+# ------------------------------------------------------------ environments
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# --------------------------------------------------------------------- OS
+.DS_Store
+Thumbs.db
+*.swp

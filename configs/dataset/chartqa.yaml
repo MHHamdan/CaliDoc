@@ -1,0 +1,38 @@
+# @package _global_
+# ChartQA Dataset Configuration
+# Chart understanding VQA benchmark
+
+dataset:
+  name: chartqa
+  task: vqa
+
+  # Dataset source
+  source: ahmed-masry/ChartQA
+
+  # Dataset statistics
+  stats:
+    num_train: 18317
+    num_val: 1250
+    num_test: 2500
+    total_charts: 21367
+    language: english
+
+  # Question types
+  question_types:
+    - human_written  # Complex reasoning
+    - augmented      # Template-based
+
+  # Processing
+  processing:
+    max_length: 512
+    image_size: [224, 224]
+
+  # Evaluation
+  metrics:
+    primary: relaxed_accuracy  # Within 5% for numerical
+    secondary: [exact_match]
+
+  # Calibration
+  calibration:
+    split_ratio: 0.2
+    random_seed: 42

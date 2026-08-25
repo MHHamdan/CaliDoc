@@ -1,0 +1,63 @@
+# CaliDoc Base Configuration
+# This file contains default settings that are shared across all experiments
+
+defaults:
+  - model: layoutlmv3
+  - dataset: cord
+  - training: baseline
+  - _self_
+
+# Experiment settings
+experiment:
+  name: calidoc_default
+  seed: 42
+  output_dir: outputs/${experiment.name}
+  log_dir: ${experiment.output_dir}/logs
+  checkpoint_dir: ${experiment.output_dir}/checkpoints
+
+# Paths
+paths:
+  data_root: ./data
+  # Verified Phase 2 data bundle (label schemas, parquet splits, split JSONs).
+  # On clusters: /scratch/hamdan/CaliDoc/data/data_bundle
+  bundle_dir: ./data_bundle
+  cache_dir: ./cache
+  pretrained_dir: ./checkpoints/pretrained
+
+# Hardware
+hardware:
+  device: cuda
+  num_workers: 8
+  pin_memory: true
+  mixed_precision: true
+
+# Calibration (default disabled)
+calibration:
+  enabled: false
+  alpha: 0.1
+  score_type: structure_aware
+  lambda_layout: 0.1
+  lambda_ocr: 0.1
+  cal_split: 0.2  # Ratio of validation data for calibration
+
+# Quality Estimator (default disabled)
+quality_estimator:
+  enabled: false
+  backbone: resnet18
+
+# Routing (default disabled)
+routing:
+  enabled: false
+
+# Logging
+logging:
+  level: INFO
+  use_wandb: false
+  use_tensorboard: true
+  log_every_n_steps: 100
+  save_every_n_epochs: 1
+
+# Reproducibility
+reproducibility:
+  deterministic: true
+  benchmark: false

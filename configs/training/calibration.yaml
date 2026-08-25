@@ -1,0 +1,72 @@
+# @package _global_
+# Calibration-Aware Training Configuration
+
+training:
+  # Training epochs
+  epochs: 20
+
+  # Batch settings
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  effective_batch_size: 32
+
+  # Optimizer
+  optimizer:
+    name: adamw
+    learning_rate: 5e-5
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+    eps: 1e-8
+
+  # Learning rate scheduler
+  scheduler:
+    name: cosine
+    warmup_ratio: 0.1
+    min_lr_ratio: 0.01
+
+  # Gradient clipping
+  max_grad_norm: 1.0
+
+  # Loss weights (CaliDoc full training)
+  losses:
+    task_weight: 1.0
+    calibration_weight: 0.1  # ECE minimization
+    quality_weight: 0.05     # Quality estimation
+    routing_weight: 0.05     # Routing optimization
+
+  # Robustness/augmentation settings
+  robustness:
+    augmentation:
+      enabled: false
+      probability: 0.5
+
+  # Checkpointing
+  save_strategy: epoch
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: eval_coverage
+
+# Calibration-specific settings (merged at root level)
+calibration:
+  enabled: true
+  alpha: 0.1  # Target miscoverage rate (90% coverage)
+  score_type: structure_aware
+  lambda_layout: 0.1
+  lambda_ocr: 0.1
+  calibration_split: 0.2
+  cal_split: 0.2
+
+# Quality estimator
+quality_estimator:
+  enabled: true
+  backbone: resnet18
+  freeze_backbone: false
+
+# Adaptive routing
+routing:
+  enabled: true
+  num_paths: 3
+  thresholds:
+    quality_high: 0.8
+    quality_low: 0.4
+    complexity_low: 0.3

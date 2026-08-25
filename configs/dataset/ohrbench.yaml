@@ -1,0 +1,48 @@
+# @package _global_
+# OHRBench Dataset Configuration
+# OCR-RAG Evaluation Benchmark (ICCV 2025)
+
+dataset:
+  name: ohrbench
+  task: ocr_rag  # OCR + Retrieval-Augmented Generation
+
+  # Dataset source
+  source: OHRBench/OHRBench  # HuggingFace or local
+
+  # Dataset statistics
+  stats:
+    num_pages: 8561
+    languages: [english, chinese]
+    categories: [textbook, slide, financial_report, newspaper, magazine, scientific_paper]
+
+  # Error categories for cascading analysis
+  error_categories:
+    ocr_errors:
+      - text_recognition
+      - layout_detection
+      - table_extraction
+      - formula_recognition
+    retrieval_errors:
+      - chunk_missing
+      - context_insufficient
+    generation_errors:
+      - hallucination
+      - incomplete_answer
+
+  # Processing
+  processing:
+    max_length: 4096  # Longer context for RAG
+    chunk_size: 512
+    chunk_overlap: 50
+    image_size: [1024, 1024]  # Higher resolution for OCR
+
+  # Evaluation
+  metrics:
+    primary: accuracy
+    secondary: [exact_match, f1]
+    cascading_metrics: true  # Enable error attribution
+
+  # Calibration
+  calibration:
+    split_ratio: 0.2
+    random_seed: 42

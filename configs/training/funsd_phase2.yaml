@@ -1,0 +1,54 @@
+# @package _global_
+# FUNSD Phase 2 retraining — hyperparameters pinned to the Phase 1 paper
+# settings (lr 5e-5, 120 epochs, LLRD 0.9, label smoothing 0.1, ES on
+# es_holdout, effective batch 32). Only the data protocol changed; do not tune.
+# NOTE: ES patience was not pinned by the Phase 1 settings; 15 chosen to match
+# the Phase 1 sota config. Flag if the paper records a different value.
+
+training:
+  epochs: 120
+
+  batch_size: 8
+  gradient_accumulation_steps: 4
+  effective_batch_size: 32
+
+  optimizer:
+    name: adamw
+    learning_rate: 5e-5
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+    eps: 1e-8
+    llrd_rate: 0.9  # layer-wise LR decay
+
+  scheduler:
+    name: cosine
+    warmup_ratio: 0.1
+    min_lr_ratio: 0.01
+
+  max_grad_norm: 1.0
+
+  save_strategy: epoch
+  save_total_limit: 3
+  load_best_model_at_end: true
+  metric_for_best_model: eval_f1
+
+  # Early stopping reads ONLY the 15-doc es_holdout (train.py enforces this).
+  early_stopping:
+    enabled: true
+    patience: 15
+    threshold: 0.001
+
+  label_smoothing: 0.1
+
+  losses:
+    task_weight: 1.0
+    calibration_weight: 0.0
+    quality_weight: 0.0
+    routing_weight: 0.0
+
+  robustness:
+    augmentation:
+      enabled: false
+      probability: 0.5
+
+  resume_from: latest

@@ -1,0 +1,22 @@
+# @package _global_
+# Main Results Experiment Configuration
+
+experiment:
+  name: calidoc_main
+  seed: 42
+  description: "CaliDoc main results on DocVQA with LayoutLMv3-Large"
+
+# Enable full CaliDoc features
+calibration:
+  enabled: true
+  alpha: 0.1
+  score_type: structure_aware
+  lambda_layout: 0.1
+  lambda_ocr: 0.1
+
+quality_estimator:
+  enabled: true
+  backbone: resnet18
+
+routing:
+  enabled: true

@@ -1,0 +1,48 @@
+# @package _global_
+# DocOwl 1.5 Model Configuration
+
+model:
+  name: docowl
+  type: ocr_free
+
+  # Model identifier
+  pretrained_name: mPLUG/DocOwl1.5
+
+  # Model architecture (7B parameters)
+  architecture:
+    hidden_size: 4096
+    num_hidden_layers: 32
+    num_attention_heads: 32
+    vocab_size: 32000
+    max_sequence_length: 2048
+
+  # Vision encoder (ViT-G/14)
+  vision:
+    image_size: 448
+    patch_size: 14
+    hidden_size: 1408
+    num_layers: 39
+    num_heads: 16
+
+  # Document structure tokens
+  doc_structure:
+    use_structure_tokens: true
+    num_row_tokens: 100
+    num_col_tokens: 100
+
+  # Loading options
+  load_pretrained: true
+  load_in_8bit: false  # Set true for memory-constrained training
+  load_in_4bit: false
+
+  # Memory optimization
+  gradient_checkpointing: true
+  use_flash_attention: true
+
+  # LoRA fine-tuning (recommended for 7B model)
+  peft:
+    use_lora: true
+    lora_r: 16
+    lora_alpha: 32
+    lora_dropout: 0.05
+    target_modules: ["q_proj", "v_proj", "k_proj", "o_proj"]
