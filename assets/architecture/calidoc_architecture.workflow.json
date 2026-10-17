@@ -1,0 +1,406 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "CaliDoc: field-level conformal risk control and boundary-escape annotation audit",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "output": "docs/architecture/calidoc_architecture.html",
+    "legend": {
+      "entries": {
+        "external": {
+          "label": "Input (given)"
+        },
+        "backend": {
+          "label": "Post-hoc computation on cached probabilities"
+        },
+        "messagebus": {
+          "label": "Calibrated threshold"
+        },
+        "frontend": {
+          "label": "Delivered object"
+        },
+        "security": {
+          "label": "Statistical control / assumption"
+        },
+        "cloud": {
+          "label": "Independent evidence"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "extract",
+      "label": "Extractor (fixed; not a contribution)"
+    },
+    {
+      "id": "calib",
+      "label": "SpanCRC calibration (document = exchangeable unit)"
+    },
+    {
+      "id": "audit",
+      "label": "Boundary-escape audit (same threshold)"
+    },
+    {
+      "id": "repair",
+      "label": "Repair lineage (SROIE case study)"
+    }
+  ],
+  "mainPath": [
+    "doc",
+    "tagger",
+    "nonconf",
+    "spanscore",
+    "risk",
+    "crc_pooled",
+    "output"
+  ],
+  "nodes": [
+    {
+      "id": "doc",
+      "lane": "extract",
+      "col": 0,
+      "type": "external",
+      "label": "Document",
+      "sublabel": "OCR words + gold BIO",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "tagger",
+      "lane": "extract",
+      "col": 1,
+      "type": "backend",
+      "label": "LayoutLMv3 tagger",
+      "sublabel": "argmax decoding kept",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "nonconf",
+      "lane": "extract",
+      "col": 2,
+      "type": "backend",
+      "label": "Token score",
+      "sublabel": "1 − p(g_i | x_i), temp. T",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "spans",
+      "lane": "calib",
+      "col": 0,
+      "type": "backend",
+      "label": "Gold field spans",
+      "sublabel": "BIO segments (a, b, t)",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "spanscore",
+      "lane": "calib",
+      "col": 2,
+      "type": "backend",
+      "label": "Max-token score",
+      "sublabel": "S(s) = max_i 1 − p(g_i | x_i)",
+      "tag": "S(s) ≤ λ iff covered",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "risk",
+      "lane": "calib",
+      "col": 3,
+      "type": "backend",
+      "label": "Field-miss R_j(λ)",
+      "sublabel": "fraction missed in doc. j",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "crc_pooled",
+      "lane": "calib",
+      "col": 4,
+      "type": "messagebus",
+      "label": "Pooled SpanCRC λ̂",
+      "sublabel": "E[R_{n+1}(λ̂)] ≤ α; Eq. 3",
+      "tag": "formal bound",
+      "yOffset": 62,
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "crc_field",
+      "lane": "calib",
+      "col": 4,
+      "type": "messagebus",
+      "label": "Field-conditional λ̂_t",
+      "sublabel": "≥ m0 = 25 spans, else pooled",
+      "tag": "per-type bound if supported",
+      "yOffset": -62,
+      "icon": "none",
+      "width": 160
+    },
+    {
+      "id": "output",
+      "lane": "calib",
+      "col": 5,
+      "type": "frontend",
+      "label": "Reliability output",
+      "sublabel": "candidate sets; risk ≤ α",
+      "tag": "full-span cov.: empirical",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "escape",
+      "lane": "audit",
+      "col": 1,
+      "type": "backend",
+      "label": "Escape set E(s)",
+      "sublabel": "τ = λ̂; 0 < k_s < L_s only",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "wstat",
+      "lane": "audit",
+      "col": 2,
+      "type": "backend",
+      "label": "Edge statistic W_t",
+      "sublabel": "escapes at span edges",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "null",
+      "lane": "audit",
+      "col": 3,
+      "type": "security",
+      "label": "Randomization null",
+      "sublabel": "given (L_s, k_s); B = 5,000",
+      "tag": "cross-span independence",
+      "yOffset": -62,
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "boot",
+      "lane": "audit",
+      "col": 3,
+      "type": "security",
+      "label": "Blocked bootstrap",
+      "sublabel": "documents resampled; 90% CI",
+      "tag": "corroborative only",
+      "yOffset": 62,
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "holm",
+      "lane": "audit",
+      "col": 4,
+      "type": "security",
+      "label": "Holm FWER control",
+      "sublabel": "eligible fields; BH, BY shown",
+      "yOffset": -62,
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "hypothesis",
+      "lane": "audit",
+      "col": 5,
+      "type": "frontend",
+      "label": "Audit hypothesis",
+      "sublabel": "field + modal escape label",
+      "tag": "needs both to agree",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "realign",
+      "lane": "repair",
+      "col": 4,
+      "type": "cloud",
+      "label": "Re-alignment check",
+      "sublabel": "Task-3 strings vs OCR",
+      "icon": "none",
+      "width": 146
+    },
+    {
+      "id": "validate",
+      "lane": "repair",
+      "col": 5,
+      "type": "backend",
+      "label": "Repair validation",
+      "sublabel": "separate lineage; signal gone",
+      "icon": "none",
+      "width": 146
+    }
+  ],
+  "edges": [
+    {
+      "id": "doc-tagger",
+      "from": "doc",
+      "to": "tagger",
+      "label": "tokens",
+      "variant": "emphasis"
+    },
+    {
+      "id": "tagger-nonconf",
+      "from": "tagger",
+      "to": "nonconf",
+      "label": "p(y|x_i)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "doc-spans",
+      "from": "doc",
+      "to": "spans",
+      "label": "labels",
+      "variant": "default",
+      "role": "branch"
+    },
+    {
+      "id": "spans-score",
+      "from": "spans",
+      "to": "spanscore",
+      "label": "spans",
+      "variant": "emphasis"
+    },
+    {
+      "id": "nonconf-score",
+      "from": "nonconf",
+      "to": "spanscore",
+      "label": "scores",
+      "variant": "emphasis"
+    },
+    {
+      "id": "score-risk",
+      "from": "spanscore",
+      "to": "risk",
+      "label": "1[S>λ]",
+      "variant": "emphasis"
+    },
+    {
+      "id": "risk-pooled",
+      "from": "risk",
+      "to": "crc_pooled",
+      "label": "all",
+      "variant": "emphasis"
+    },
+    {
+      "id": "risk-field",
+      "from": "risk",
+      "to": "crc_field",
+      "label": "type t",
+      "variant": "default",
+      "role": "branch"
+    },
+    {
+      "id": "pooled-output",
+      "from": "crc_pooled",
+      "to": "output",
+      "label": "pooled",
+      "variant": "emphasis"
+    },
+    {
+      "id": "field-output",
+      "from": "crc_field",
+      "to": "output",
+      "label": "λ̂_t",
+      "variant": "default"
+    },
+    {
+      "id": "pooled-escape",
+      "from": "crc_pooled",
+      "to": "escape",
+      "label": "τ = λ̂",
+      "variant": "dashed",
+      "role": "return",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "escape-wstat",
+      "from": "escape",
+      "to": "wstat",
+      "label": "edges",
+      "variant": "dashed"
+    },
+    {
+      "id": "wstat-null",
+      "from": "wstat",
+      "to": "null",
+      "label": "raw p_t",
+      "variant": "dashed"
+    },
+    {
+      "id": "wstat-boot",
+      "from": "wstat",
+      "to": "boot",
+      "label": "ratio",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "null-holm",
+      "from": "null",
+      "to": "holm",
+      "label": "p_t",
+      "variant": "dashed"
+    },
+    {
+      "id": "holm-hyp",
+      "from": "holm",
+      "to": "hypothesis",
+      "label": "reject",
+      "variant": "dashed"
+    },
+    {
+      "id": "boot-hyp",
+      "from": "boot",
+      "to": "hypothesis",
+      "label": "CI ∌ 1",
+      "variant": "dashed"
+    },
+    {
+      "id": "hyp-realign",
+      "from": "hypothesis",
+      "to": "realign",
+      "label": "ADDRESS",
+      "variant": "default",
+      "role": "branch"
+    },
+    {
+      "id": "realign-validate",
+      "from": "realign",
+      "to": "validate",
+      "label": "rebuilt",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "What is formally guaranteed",
+      "items": [
+        "Expected per-document fraction of missed gold fields ≤ α on a fresh document (pooled threshold)",
+        "Same bound per field type only for types with ≥ m0 calibration spans; fallback types inherit the pooled bound",
+        "Full-span coverage and CovGap are empirical summaries, not the guarantee"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "What the audit assumes",
+      "items": [
+        "Raw p-value rests on within-span positional exchangeability and cross-span independence",
+        "Holm controls FWER across fields; it does not repair a single raw p-value",
+        "Document-blocked bootstrap corroborates under weaker assumptions; a finding is claimed only when both agree",
+        "Spans of length ≤ 2 carry no positional information (blind spot)"
+      ]
+    }
+  ]
+}
