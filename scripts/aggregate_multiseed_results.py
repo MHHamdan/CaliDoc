@@ -61,7 +61,7 @@ def format_result(mean: float, margin: float, is_percentage: bool = True) -> str
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--output_dir', type=str, default='/scratch/hamdan/calidoc_outputs')
+    parser.add_argument('--output_dir', type=str, default='outputs')
     parser.add_argument('--seeds', type=int, nargs='+', default=[42, 123, 456])
     args = parser.parse_args()
 

@@ -9,7 +9,7 @@ evaluation stage — never inside training.
 
 Usage:
     python scripts/train.py experiment=cord_phase2 experiment.seed=42
-    python scripts/train.py experiment=funsd_phase2 paths.bundle_dir=/scratch/hamdan/CaliDoc/data/data_bundle
+    python scripts/train.py experiment=funsd_phase2 paths.bundle_dir=data_bundle
 """
 
 import json

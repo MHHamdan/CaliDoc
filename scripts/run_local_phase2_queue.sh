@@ -15,7 +15,7 @@
 #   D  E7: repaired-SROIE train + full audit
 #   E  E1: full fine-tuning under planted label noise
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=0
 

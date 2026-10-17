@@ -12,7 +12,7 @@
 # identically to every baseline, so nothing is handicapped. Both metrics are
 # reported; if we lose on both, that is the finding.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=0
 # The weights are already cached. Without this, every model construction (6 per

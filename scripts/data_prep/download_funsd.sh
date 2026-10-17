@@ -3,7 +3,7 @@
 # Verifies archive checksum is recorded and document counts match 149/50.
 set -euo pipefail
 
-RAW_DIR="/home/mhamdan/Calidoc/data/raw/funsd"
+RAW_DIR="$(cd "$(dirname "$0")/../.." && pwd)/data/raw/funsd"
 URL="https://guillaumejaume.github.io/FUNSD/dataset.zip"
 ZIP="$RAW_DIR/dataset.zip"
 

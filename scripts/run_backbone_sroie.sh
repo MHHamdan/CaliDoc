@@ -2,7 +2,7 @@
 # SROIE on LayoutLMv3-BASE: does the catastrophic token-vs-field proxy
 # failure survive the model-scale change? Same protocol as the Large lineage.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=1
 

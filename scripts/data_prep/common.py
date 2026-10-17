@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 
-ROOT = Path("/home/mhamdan/Calidoc")
+ROOT = Path(__file__).resolve().parents[2]
 RAW_DIR = ROOT / "data" / "raw"
 BUNDLE_DIR = ROOT / "data_bundle"
 

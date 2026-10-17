@@ -18,9 +18,9 @@ has no O class; the Phase 1 "O ≈ 5%" narrative was the label-schema artifact).
 
 Usage:
   python scripts/evaluate_conformal_phase2.py \
-      --model_path /scratch/hamdan/CaliDoc/outputs/<EXP>/best \
-      --dataset cord --bundle_dir /scratch/hamdan/CaliDoc/data/data_bundle \
-      --output /scratch/hamdan/CaliDoc/results/phase2_results_cord.json
+      --model_path outputs/<EXP>/best \
+      --dataset cord --bundle_dir data_bundle \
+      --output results/phase2_results_cord.json
 """
 
 import argparse

@@ -12,7 +12,7 @@
 # Waits on the E2 follow-on's completion marker (which itself waits on the
 # master queue), keeping a single owner of GPU0 at all times.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=0
 

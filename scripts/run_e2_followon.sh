@@ -5,7 +5,7 @@
 # pgrep. Two pgrep-based waiters race: each sees an idle GPU in the gap between
 # two queue steps and starts contending. The marker only ever appears once.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=0
 

@@ -10,7 +10,7 @@
 # Chain: train (cal docs excluded by the fit-stage guard) -> cache dump
 # (cord-style cal+test units) -> SpanCRC + boundary escape on the clean split.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=1
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True

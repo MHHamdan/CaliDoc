@@ -10,7 +10,7 @@
 # collapsed to ~0.00 recover to near-nominal while test F1 barely moves, the
 # auditor found a real annotation defect and the loop closes.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=0
 

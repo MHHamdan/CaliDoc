@@ -3,7 +3,7 @@
 # Protocol identical to the Large lineage and the Base seed-42 runs.
 # Per-epoch checkpoints pruned after each run (best/ kept).
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=0
 

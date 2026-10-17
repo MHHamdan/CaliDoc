@@ -3,7 +3,7 @@
 # at the PINNED batch 8 x accum 4 (GPU1 fully free) -- uniform protocol, no
 # batch deviation. Replaces the interim seed-42 batch-2x16 run.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=1
 

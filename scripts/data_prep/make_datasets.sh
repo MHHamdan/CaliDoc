@@ -30,4 +30,4 @@ echo "=== Step 7/7: round-trip check + manifest ==="
 $PY "$HERE/roundtrip_check.py"
 $PY "$HERE/build_manifest.py"
 
-echo "=== DONE: bundle at /home/mhamdan/Calidoc/data_bundle ==="
+echo "=== DONE: bundle at data_bundle/ ==="

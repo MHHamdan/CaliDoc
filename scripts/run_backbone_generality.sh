@@ -9,7 +9,7 @@
 # Runs serially on GPU1 (GPU0 is fully booked). Base peaks well under the
 # ~20 GB currently free. Cache tag: base_local_20260815.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 export CUDA_VISIBLE_DEVICES=1
 

@@ -7,7 +7,7 @@
 # has ~45 GB free (ollama holds ~43 GB), so co-scheduling OOMs. Batch size is
 # NOT reduced -- it is pinned by the Phase 1 paper settings.
 set -u
-cd /home/mhamdan/Calidoc
+cd "$(dirname "$0")/.."
 export CUBLAS_WORKSPACE_CONFIG=:4096:8   # required by reproducibility.deterministic=true
 export CUDA_VISIBLE_DEVICES=0
 
