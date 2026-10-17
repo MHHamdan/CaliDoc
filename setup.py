@@ -15,12 +15,12 @@ with open("requirements.txt", "r", encoding="utf-8") as fh:
 setup(
     name="calidoc",
     version="0.1.0",
-    author="CaliDoc Team",
+    author="Mohammed Hamdan",
     author_email="",
     description="Calibrated Document Understanding with Uncertainty Quantification and Robustness Guarantees",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/YOUR_USERNAME/calidoc",
+    url="https://github.com/MHHamdan/CaliDoc",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",

@@ -61,3 +61,19 @@ env/
 .DS_Store
 Thumbs.db
 *.swp
+
+# ------------------------------------------- cluster jobs and private tooling
+# Scheduler scripts, cluster sync/verify helpers and release packagers carry
+# account names, hostnames and scratch paths. They stay local.
+slurm/
+scripts/slurm/
+scripts/nibi_*.sh
+scripts/trillium_*.sh
+scripts/transfer_*_nibi.sh
+scripts/gate0_trillium_check.sh
+scripts/status_check.sh
+scripts/wildreceipt_eval_check.sh
+scripts/cache_large.sh
+scripts/run_multiseed_experiments.sh
+scripts/make_code_supplement.py
+scripts/make_release_zips.py

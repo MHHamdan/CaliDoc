@@ -19,7 +19,7 @@ experiment:
 paths:
   data_root: ./data
   # Verified Phase 2 data bundle (label schemas, parquet splits, split JSONs).
-  # On clusters: /scratch/hamdan/CaliDoc/data/data_bundle
+  # On clusters: point this at the data_bundle location on scratch
   bundle_dir: ./data_bundle
   cache_dir: ./cache
   pretrained_dir: ./checkpoints/pretrained
