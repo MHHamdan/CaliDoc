@@ -8,7 +8,8 @@ Date: 2026-10-17. Machine: lytos (Linux), fresh virtualenv, CPU inference.
 |---|---|---|
 | Hugging Face models | public `MHamdan/calidoc-layoutlmv3-large-*`, **anonymous** (no token, empty `HF_HOME`) | PASS |
 | CaliDoc package and example inputs | `git clone` of commit `e41fc3d` from the local repository | PASS |
-| CaliDoc package from **public GitHub** | `https://github.com/MHHamdan/CaliDoc` | **PENDING**: commits `87f0c1c` and `e41fc3d` are not pushed yet; re-run the commands below with the GitHub URL after the push |
+| CaliDoc package from **public GitHub**, clone path | `git clone https://github.com/MHHamdan/CaliDoc.git` at `2a83fa7`, `pip install .` | PASS (rerun 2026-10-17) |
+| CaliDoc package from **public GitHub**, no clone | `pip install "calidoc @ git+https://github.com/MHHamdan/CaliDoc"`, inputs fetched from `raw.githubusercontent.com` | PASS (rerun 2026-10-17) |
 
 ## Commands (as run)
 
@@ -61,3 +62,26 @@ The steps below follow the order of the commands above.
   the run from the local export.
 - **Model card code.** The Python blocks in the model card and in the README Quick Start
   were executed verbatim and ran without error.
+
+## Public GitHub rerun (2026-10-17, after the push)
+
+The rerun used fresh virtualenvs and anonymous Hub access, with torch 2.14.1+cu130 and
+transformers 5.20.1.
+
+- **A: `git clone` + `pip install .`**
+  - Runs on `cord_test_0042` are deterministic.
+  - Field types, texts, labels, set sizes, statuses and thresholds are identical to the
+    committed showcase.
+  - Route `review`; 9 fields, all `ambiguous_review`. The figure renders.
+- **B: `pip install git+…` with no clone**
+  - Uses the README / model-card Python API on `cord_test_0014`, with the image and OCR
+    downloaded from GitHub raw.
+  - Result: 25 fields, 24 `ambiguous_review` and 1 `conflict_review`. The conflict is
+    *Coupon 100,000*, matching the committed example.
+
+## Hugging Face Space
+
+`MHamdan/CaliDoc-demo` was **not created**. The Hub rejected repository creation with
+`402 Payment Required`: hosting Gradio Spaces on free cpu-basic hardware requires a PRO
+subscription. The app is prepared and tested locally in `release/space/`. Its
+`requirements.txt` pins `calidoc` to commit `2a83fa7`.
