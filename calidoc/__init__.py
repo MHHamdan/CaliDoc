@@ -1,32 +1,17 @@
 """
-CaliDoc: Calibrated Document Understanding with Uncertainty Quantification
+CaliDoc: Calibrated Field-Level Risk and Annotation Auditing for Document
+Information Extraction (WACV 2027).
 
-A framework for uncertainty-aware document understanding that provides:
-1. Conformal Prediction for Document VLMs
-2. DocRobust-Bench: Comprehensive robustness benchmark
-3. Quality-Aware Adaptive Processing
+Inference with a released checkpoint:
 
-Usage:
-    from calidoc import CaliDocModel, ConformalCalibrator
+    from calidoc.inference import CaliDocPredictor
 
-    model = CaliDocModel.from_pretrained("calidoc-layoutlmv3-large")
-    result = model.predict(image="document.png", question="What is the total?")
+    predictor = CaliDocPredictor.from_pretrained("MHamdan/calidoc-layoutlmv3-large-cord")
+    result = predictor.predict(image, words, boxes)   # boxes on the 0-1000 grid
+
+Research code (training, probability caching, SpanCRC, boundary-escape audit)
+lives in `calidoc.data`, `calidoc.models`, `calidoc.training` and `scripts/`.
 """
 
 __version__ = "0.1.0"
-__author__ = "CaliDoc Team"
-
-from .models import (
-    CaliDocModel,
-    ConformalCalibrator,
-    QualityEstimator,
-    AdaptiveRouter,
-)
-
-__all__ = [
-    "CaliDocModel",
-    "ConformalCalibrator",
-    "QualityEstimator",
-    "AdaptiveRouter",
-    "__version__",
-]
+__author__ = "Mohammed Hamdan"
