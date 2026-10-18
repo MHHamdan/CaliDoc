@@ -1,0 +1,77 @@
+[
+  {
+    "dataset": "sroie",
+    "doc_id": "sroie_test_X51005568889",
+    "role": "representative",
+    "model": "MHamdan/calidoc-layoutlmv3-large-sroie",
+    "path": "sroie/sroie_test_X51005568889",
+    "n_fields": 4,
+    "status_counts": {
+      "covered": 4,
+      "ambiguous_review": 0,
+      "conflict_review": 0,
+      "empty_abstain": 0
+    },
+    "route": "accept"
+  },
+  {
+    "dataset": "cord",
+    "doc_id": "cord_test_0042",
+    "role": "representative",
+    "model": "MHamdan/calidoc-layoutlmv3-large-cord",
+    "path": "cord/cord_test_0042",
+    "n_fields": 9,
+    "status_counts": {
+      "covered": 0,
+      "ambiguous_review": 9,
+      "conflict_review": 0,
+      "empty_abstain": 0
+    },
+    "route": "review"
+  },
+  {
+    "dataset": "cord",
+    "doc_id": "cord_test_0014",
+    "role": "diagnostic",
+    "model": "MHamdan/calidoc-layoutlmv3-large-cord",
+    "path": "cord/cord_test_0014",
+    "n_fields": 25,
+    "status_counts": {
+      "covered": 0,
+      "ambiguous_review": 24,
+      "conflict_review": 1,
+      "empty_abstain": 0
+    },
+    "route": "review"
+  },
+  {
+    "dataset": "funsd",
+    "doc_id": "funsd_test_87093315_87093318",
+    "role": "representative",
+    "model": "MHamdan/calidoc-layoutlmv3-large-funsd",
+    "path": "funsd/funsd_test_87093315_87093318",
+    "n_fields": 100,
+    "status_counts": {
+      "covered": 15,
+      "ambiguous_review": 85,
+      "conflict_review": 0,
+      "empty_abstain": 0
+    },
+    "route": "review"
+  },
+  {
+    "dataset": "wildreceipt",
+    "doc_id": "wildreceipt_test_32abb05dc239b237b39b094a784e23cd7f251dbb",
+    "role": "representative",
+    "model": "MHamdan/calidoc-layoutlmv3-large-wildreceipt",
+    "path": "wildreceipt/wildreceipt_test_32abb05dc239b237b39b094a784e23cd7f251dbb",
+    "n_fields": 17,
+    "status_counts": {
+      "covered": 16,
+      "ambiguous_review": 0,
+      "conflict_review": 0,
+      "empty_abstain": 1
+    },
+    "route": "review"
+  }
+]

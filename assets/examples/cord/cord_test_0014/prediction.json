@@ -1,0 +1,1065 @@
+{
+  "dataset": "cord",
+  "doc_id": "cord_test_0014",
+  "split": "test",
+  "role": "diagnostic",
+  "selection": {
+    "rule": "sorted by (word count, doc_id) over eligible documents; 90th percentile",
+    "rank": 89,
+    "n_eligible": 100,
+    "n_words": 40
+  },
+  "attribution": {
+    "dataset": "CORD v2",
+    "source": "https://huggingface.co/datasets/naver-clova-ix/cord-v2",
+    "revision": "7f0115a4b758a71d6473b8d085751692da2fef98",
+    "license": "CC BY 4.0",
+    "citation": "Park et al., CORD: A Consolidated Receipt Dataset for Post-OCR Parsing, Document Intelligence Workshop at NeurIPS 2019",
+    "source_index_in_split": 14
+  },
+  "ocr": "dataset-provided OCR words and boxes (no OCR engine is run)",
+  "redistribution_cleared": true,
+  "ground_truth": {
+    "fields": [
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          0,
+          1
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.NM",
+        "text": "RedVelvet Cheese Slc",
+        "word_span": [
+          1,
+          4
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "38,000",
+        "word_span": [
+          4,
+          5
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          5,
+          6
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Chicken Baked Rice",
+        "word_span": [
+          6,
+          9
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "55,000",
+        "word_span": [
+          9,
+          10
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          10,
+          11
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Fish n Chips",
+        "word_span": [
+          11,
+          14
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "65,000",
+        "word_span": [
+          14,
+          15
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          15,
+          16
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Mushroom Soup",
+        "word_span": [
+          16,
+          18
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "35,000",
+        "word_span": [
+          18,
+          19
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          19,
+          20
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Chamomile",
+        "word_span": [
+          20,
+          21
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "25,000",
+        "word_span": [
+          21,
+          22
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          22,
+          23
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Iced Tea",
+        "word_span": [
+          23,
+          25
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "20,000",
+        "word_span": [
+          25,
+          26
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "SUB_TOTAL.SUBTOTAL_PRICE",
+        "text": "SUBTOTAL 238,000",
+        "word_span": [
+          26,
+          28
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "SUB_TOTAL.SERVICE_PRICE",
+        "text": "Service 17,850",
+        "word_span": [
+          28,
+          30
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "SUB_TOTAL.TAX_PRICE",
+        "text": "PB1 25,585",
+        "word_span": [
+          30,
+          32
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "TOTAL.TOTAL_PRICE",
+        "text": "TOTAL 281,435",
+        "word_span": [
+          32,
+          34
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "TOTAL.TOTAL_ETC",
+        "text": "Coupon 100,000",
+        "word_span": [
+          34,
+          36
+        ],
+        "covered_by_calibrated_sets": false
+      },
+      {
+        "type": "TOTAL.CASHPRICE",
+        "text": "CASH 200,000",
+        "word_span": [
+          36,
+          38
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "TOTAL.CHANGEPRICE",
+        "text": "Change 18,565",
+        "word_span": [
+          38,
+          40
+        ],
+        "covered_by_calibrated_sets": true
+      }
+    ],
+    "n_gold_fields": 25,
+    "n_missed": 1,
+    "document_field_miss_fraction": 0.04
+  },
+  "image": "document.png",
+  "prediction": {
+    "model": "MHamdan/calidoc-layoutlmv3-large-cord",
+    "n_words": 40,
+    "n_words_scored": 40,
+    "n_words_truncated": 0,
+    "fields": [
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          0,
+          1
+        ],
+        "bbox": [
+          277,
+          332,
+          294,
+          346
+        ],
+        "labels": [
+          "B-MENU.CNT"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.003068089485168457,
+        "threshold": 0.022054076194763184,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.NM",
+        "text": "RedVelvet Cheese Slc",
+        "word_span": [
+          1,
+          4
+        ],
+        "bbox": [
+          302,
+          332,
+          558,
+          348
+        ],
+        "labels": [
+          "B-MENU.NM",
+          "I-MENU.NM",
+          "I-MENU.NM"
+        ],
+        "set_sizes": [
+          3,
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0023392438888549805,
+        "threshold": 0.06673496961593628,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "38,000",
+        "word_span": [
+          4,
+          5
+        ],
+        "bbox": [
+          677,
+          333,
+          757,
+          348
+        ],
+        "labels": [
+          "B-MENU.PRICE"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0039408206939697266,
+        "threshold": 0.06055116653442383,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          5,
+          6
+        ],
+        "bbox": [
+          277,
+          346,
+          294,
+          360
+        ],
+        "labels": [
+          "B-MENU.CNT"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.003130614757537842,
+        "threshold": 0.022054076194763184,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Chicken Baked Rice",
+        "word_span": [
+          6,
+          9
+        ],
+        "bbox": [
+          301,
+          346,
+          533,
+          362
+        ],
+        "labels": [
+          "B-MENU.NM",
+          "I-MENU.NM",
+          "I-MENU.NM"
+        ],
+        "set_sizes": [
+          3,
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0024671554565429688,
+        "threshold": 0.06673496961593628,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "55,000",
+        "word_span": [
+          9,
+          10
+        ],
+        "bbox": [
+          675,
+          346,
+          757,
+          362
+        ],
+        "labels": [
+          "B-MENU.PRICE"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0038384199142456055,
+        "threshold": 0.06055116653442383,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          10,
+          11
+        ],
+        "bbox": [
+          277,
+          360,
+          296,
+          375
+        ],
+        "labels": [
+          "B-MENU.CNT"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.003184497356414795,
+        "threshold": 0.022054076194763184,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Fish n Chips",
+        "word_span": [
+          11,
+          14
+        ],
+        "bbox": [
+          301,
+          360,
+          459,
+          375
+        ],
+        "labels": [
+          "B-MENU.NM",
+          "I-MENU.NM",
+          "I-MENU.NM"
+        ],
+        "set_sizes": [
+          3,
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0023366212844848633,
+        "threshold": 0.06673496961593628,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "65,000",
+        "word_span": [
+          14,
+          15
+        ],
+        "bbox": [
+          677,
+          361,
+          758,
+          376
+        ],
+        "labels": [
+          "B-MENU.PRICE"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.003799259662628174,
+        "threshold": 0.06055116653442383,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          15,
+          16
+        ],
+        "bbox": [
+          275,
+          375,
+          294,
+          388
+        ],
+        "labels": [
+          "B-MENU.CNT"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0031031370162963867,
+        "threshold": 0.022054076194763184,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Mushroom Soup",
+        "word_span": [
+          16,
+          18
+        ],
+        "bbox": [
+          301,
+          374,
+          473,
+          392
+        ],
+        "labels": [
+          "B-MENU.NM",
+          "I-MENU.NM"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.002550661563873291,
+        "threshold": 0.06673496961593628,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "35,000",
+        "word_span": [
+          18,
+          19
+        ],
+        "bbox": [
+          675,
+          375,
+          759,
+          391
+        ],
+        "labels": [
+          "B-MENU.PRICE"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.003811061382293701,
+        "threshold": 0.06055116653442383,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          19,
+          20
+        ],
+        "bbox": [
+          277,
+          388,
+          296,
+          401
+        ],
+        "labels": [
+          "B-MENU.CNT"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0031958818435668945,
+        "threshold": 0.022054076194763184,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Chamomile",
+        "word_span": [
+          20,
+          21
+        ],
+        "bbox": [
+          301,
+          388,
+          422,
+          404
+        ],
+        "labels": [
+          "B-MENU.NM"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0024077892303466797,
+        "threshold": 0.06673496961593628,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "25,000",
+        "word_span": [
+          21,
+          22
+        ],
+        "bbox": [
+          677,
+          388,
+          759,
+          405
+        ],
+        "labels": [
+          "B-MENU.PRICE"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0037160515785217285,
+        "threshold": 0.06055116653442383,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          22,
+          23
+        ],
+        "bbox": [
+          275,
+          402,
+          292,
+          416
+        ],
+        "labels": [
+          "B-MENU.CNT"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0032166242599487305,
+        "threshold": 0.022054076194763184,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Iced Tea",
+        "word_span": [
+          23,
+          25
+        ],
+        "bbox": [
+          303,
+          402,
+          409,
+          417
+        ],
+        "labels": [
+          "B-MENU.NM",
+          "I-MENU.NM"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.002406895160675049,
+        "threshold": 0.06673496961593628,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "20,000",
+        "word_span": [
+          25,
+          26
+        ],
+        "bbox": [
+          677,
+          402,
+          760,
+          419
+        ],
+        "labels": [
+          "B-MENU.PRICE"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0037473440170288086,
+        "threshold": 0.06055116653442383,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "SUB_TOTAL.SUBTOTAL_PRICE",
+        "text": "SUBTOTAL 238,000",
+        "word_span": [
+          26,
+          28
+        ],
+        "bbox": [
+          301,
+          430,
+          760,
+          446
+        ],
+        "labels": [
+          "B-SUB_TOTAL.SUBTOTAL_PRICE",
+          "I-SUB_TOTAL.SUBTOTAL_PRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.00794309377670288,
+        "threshold": 0.3120020031929016,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "SUB_TOTAL.SERVICE_PRICE",
+        "text": "Service 17,850",
+        "word_span": [
+          28,
+          30
+        ],
+        "bbox": [
+          301,
+          444,
+          762,
+          460
+        ],
+        "labels": [
+          "B-SUB_TOTAL.SERVICE_PRICE",
+          "I-SUB_TOTAL.SERVICE_PRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.11653172969818115,
+        "threshold": 0.1890329122543335,
+        "threshold_source": "pooled_fallback",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "SUB_TOTAL.TAX_PRICE",
+        "text": "PB1 25,585",
+        "word_span": [
+          30,
+          32
+        ],
+        "bbox": [
+          299,
+          459,
+          762,
+          475
+        ],
+        "labels": [
+          "B-SUB_TOTAL.TAX_PRICE",
+          "I-SUB_TOTAL.TAX_PRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.015162110328674316,
+        "threshold": 0.1890329122543335,
+        "threshold_source": "pooled_fallback",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "TOTAL.TOTAL_PRICE",
+        "text": "TOTAL 281,435",
+        "word_span": [
+          32,
+          34
+        ],
+        "bbox": [
+          305,
+          487,
+          762,
+          505
+        ],
+        "labels": [
+          "B-TOTAL.TOTAL_PRICE",
+          "I-TOTAL.TOTAL_PRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0069776177406311035,
+        "threshold": 0.014907300472259521,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "SUB_TOTAL.ETC",
+        "text": "Coupon 100,000",
+        "word_span": [
+          34,
+          36
+        ],
+        "bbox": [
+          301,
+          515,
+          766,
+          532
+        ],
+        "labels": [
+          "B-SUB_TOTAL.ETC",
+          "I-SUB_TOTAL.ETC"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.800573468208313,
+        "threshold": 0.1890329122543335,
+        "threshold_source": "pooled_fallback",
+        "status": "conflict_review"
+      },
+      {
+        "type": "TOTAL.CASHPRICE",
+        "text": "CASH 200,000",
+        "word_span": [
+          36,
+          38
+        ],
+        "bbox": [
+          299,
+          530,
+          768,
+          545
+        ],
+        "labels": [
+          "B-TOTAL.CASHPRICE",
+          "I-TOTAL.CASHPRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0068291425704956055,
+        "threshold": 0.05941289663314819,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "TOTAL.CHANGEPRICE",
+        "text": "Change 18,565",
+        "word_span": [
+          38,
+          40
+        ],
+        "bbox": [
+          300,
+          544,
+          768,
+          562
+        ],
+        "labels": [
+          "B-TOTAL.CHANGEPRICE",
+          "I-TOTAL.CHANGEPRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.009566545486450195,
+        "threshold": 0.029871702194213867,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      }
+    ],
+    "unassigned_field_candidates": [],
+    "summary": {
+      "n_fields": 25,
+      "status_counts": {
+        "covered": 0,
+        "ambiguous_review": 24,
+        "conflict_review": 1,
+        "empty_abstain": 0
+      },
+      "route": "review"
+    },
+    "calibration": {
+      "alpha": 0.1,
+      "m0": 25,
+      "temperature": 0.8946070671081543,
+      "pooled_lambda": 0.1890329122543335,
+      "threshold_mode": "field-conditional SpanCRC with pooled fallback",
+      "fallback_fields": [
+        "MENU.DISCOUNTPRICE",
+        "MENU.ETC",
+        "MENU.ITEMSUBTOTAL",
+        "MENU.NUM",
+        "MENU.SUB.PRICE",
+        "MENU.SUB.UNITPRICE",
+        "MENU.UNITPRICE",
+        "MENU.VATYN",
+        "SUB_TOTAL.DISCOUNT_PRICE",
+        "SUB_TOTAL.ETC",
+        "SUB_TOTAL.OTHERSVC_PRICE",
+        "SUB_TOTAL.SERVICE_PRICE",
+        "SUB_TOTAL.TAX_PRICE",
+        "TOTAL.CREDITCARDPRICE",
+        "TOTAL.EMONEYPRICE",
+        "TOTAL.MENUQTY_CNT",
+        "TOTAL.MENUTYPE_CNT",
+        "TOTAL.TOTAL_ETC",
+        "VOID_MENU.NM",
+        "VOID_MENU.PRICE"
+      ],
+      "guarantee": "E[per-document fraction of missed gold fields] <= alpha, for documents exchangeable with the calibration documents",
+      "status_definitions": {
+        "covered": "every word's calibrated set is exactly the predicted label",
+        "ambiguous_review": "every word keeps the predicted label, but some word's set also admits other labels",
+        "conflict_review": "some word's calibrated set is non-empty but excludes the predicted label",
+        "empty_abstain": "some word's calibrated set is empty: no label clears its threshold"
+      }
+    }
+  }
+}

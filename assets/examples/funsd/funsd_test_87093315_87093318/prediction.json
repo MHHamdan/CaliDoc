@@ -1,0 +1,2442 @@
+{
+  "dataset": "funsd",
+  "doc_id": "funsd_test_87093315_87093318",
+  "split": "test",
+  "role": "representative",
+  "selection": {
+    "rule": "sorted by (word count, doc_id) over eligible documents; lower median",
+    "rank": 7,
+    "n_eligible": 15,
+    "n_words": 194
+  },
+  "attribution": {
+    "dataset": "FUNSD",
+    "source": "https://guillaumejaume.github.io/FUNSD/",
+    "license": "FUNSD License (non-commercial research and education; images under third-party copyright)",
+    "citation": "Jaume, Ekenel, Thiran, FUNSD: A Dataset for Form Understanding in Noisy Scanned Documents, ICDAR-OST 2019"
+  },
+  "ocr": "dataset-provided OCR words and boxes (no OCR engine is run)",
+  "redistribution_cleared": false,
+  "prediction": {
+    "model": "MHamdan/calidoc-layoutlmv3-large-funsd",
+    "n_words": 194,
+    "n_words_scored": 194,
+    "n_words_truncated": 0,
+    "fields": [
+      {
+        "type": "QUESTION",
+        "word_span": [
+          0,
+          1
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.1965789794921875,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          1,
+          2
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          6
+        ],
+        "max_set_size": 6,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-ANSWER",
+          "I-HEADER",
+          "O"
+        ],
+        "max_token_score": 0.5252119898796082,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          2,
+          3
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.21687275171279907,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          3,
+          4
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.13313895463943481,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          4,
+          5
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.15118557214736938,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          5,
+          6
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.1438705325126648,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "HEADER",
+        "word_span": [
+          6,
+          7
+        ],
+        "labels": [
+          "B-HEADER"
+        ],
+        "set_sizes": [
+          6
+        ],
+        "max_set_size": 6,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-QUESTION",
+          "I-ANSWER",
+          "I-HEADER",
+          "O"
+        ],
+        "max_token_score": 0.46382564306259155,
+        "threshold": 0.9686369299888611,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "HEADER",
+        "word_span": [
+          7,
+          8
+        ],
+        "labels": [
+          "B-HEADER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-QUESTION",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.22106105089187622,
+        "threshold": 0.9686369299888611,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          8,
+          9
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.16092783212661743,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          9,
+          10
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.12018829584121704,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          10,
+          11
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.13244104385375977,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          11,
+          12
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.13037925958633423,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          12,
+          13
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.1528874635696411,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          13,
+          14
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.1532476544380188,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          14,
+          15
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.1511133313179016,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          15,
+          16
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.15617167949676514,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          16,
+          17
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.17666763067245483,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          17,
+          18
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.20880430936813354,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          18,
+          19
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          4
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.20713156461715698,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          19,
+          20
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.1523888111114502,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          20,
+          21
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          4
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.20651429891586304,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          21,
+          22
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.1758437156677246,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          22,
+          24
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          2,
+          5
+        ],
+        "max_set_size": 5,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER",
+          "O"
+        ],
+        "max_token_score": 0.3521985411643982,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          24,
+          25
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.1873270869255066,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          25,
+          26
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.2068576216697693,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          26,
+          27
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-QUESTION"
+        ],
+        "max_token_score": 0.18913167715072632,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          27,
+          28
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-QUESTION"
+        ],
+        "max_token_score": 0.26576900482177734,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          28,
+          29
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-QUESTION",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.24799036979675293,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          29,
+          30
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-QUESTION"
+        ],
+        "max_token_score": 0.2229742407798767,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          30,
+          31
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-QUESTION",
+          "O"
+        ],
+        "max_token_score": 0.28235387802124023,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          31,
+          32
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-QUESTION",
+          "O"
+        ],
+        "max_token_score": 0.2603999376296997,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          32,
+          33
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-QUESTION",
+          "O"
+        ],
+        "max_token_score": 0.2912861108779907,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "HEADER",
+        "word_span": [
+          33,
+          34
+        ],
+        "labels": [
+          "B-HEADER"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.19794833660125732,
+        "threshold": 0.9686369299888611,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "HEADER",
+        "word_span": [
+          34,
+          35
+        ],
+        "labels": [
+          "B-HEADER"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-QUESTION"
+        ],
+        "max_token_score": 0.15030032396316528,
+        "threshold": 0.9686369299888611,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          35,
+          36
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.13964271545410156,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          36,
+          37
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.14925724267959595,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          37,
+          38
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.1343909502029419,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          38,
+          39
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.13569289445877075,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          39,
+          40
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.16777527332305908,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          40,
+          41
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.5572871565818787,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          41,
+          43
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.49342983961105347,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          47,
+          49
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          4,
+          4
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER",
+          "O"
+        ],
+        "max_token_score": 0.23771125078201294,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          49,
+          52
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          1,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "I-ANSWER",
+          "I-HEADER",
+          "O"
+        ],
+        "max_token_score": 0.2375718355178833,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          52,
+          54
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          1
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "I-ANSWER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.2178483009338379,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          54,
+          58
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.1256885528564453,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          58,
+          62
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          2,
+          1,
+          1,
+          4
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER",
+          "I-QUESTION"
+        ],
+        "max_token_score": 0.36236339807510376,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          62,
+          65
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          4,
+          1,
+          3
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER",
+          "O"
+        ],
+        "max_token_score": 0.21207284927368164,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          65,
+          69
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          5,
+          4,
+          4,
+          2
+        ],
+        "max_set_size": 5,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-HEADER",
+          "I-QUESTION",
+          "O"
+        ],
+        "max_token_score": 0.3794060945510864,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          69,
+          73
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          1,
+          1,
+          1
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.1542966365814209,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          73,
+          76
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          4,
+          1,
+          2
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-QUESTION",
+          "O"
+        ],
+        "max_token_score": 0.27597570419311523,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          76,
+          78
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.18561142683029175,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          78,
+          80
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          6
+        ],
+        "max_set_size": 6,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER",
+          "I-QUESTION",
+          "O"
+        ],
+        "max_token_score": 0.42973262071609497,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          80,
+          82
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          4
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.25009632110595703,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          82,
+          84
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          4
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.21135061979293823,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          84,
+          86
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.23788690567016602,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          86,
+          90
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          3,
+          2,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.24335217475891113,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          90,
+          93
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.2327074408531189,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          93,
+          96
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.22698837518692017,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          96,
+          99
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.2142506241798401,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          99,
+          101
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          4,
+          2
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-ANSWER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.5437800288200378,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "HEADER",
+        "word_span": [
+          101,
+          104
+        ],
+        "labels": [
+          "I-HEADER",
+          "I-HEADER",
+          "I-HEADER"
+        ],
+        "set_sizes": [
+          3,
+          2,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-QUESTION"
+        ],
+        "max_token_score": 0.5640867948532104,
+        "threshold": 0.9686369299888611,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          104,
+          106
+        ],
+        "labels": [
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          3,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-QUESTION",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.4609376788139343,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          106,
+          108
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          5
+        ],
+        "max_set_size": 5,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "B-QUESTION",
+          "I-ANSWER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.36062300205230713,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          108,
+          110
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.1697312593460083,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          110,
+          113
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.13788682222366333,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          113,
+          115
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.14498203992843628,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          115,
+          117
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.14621978998184204,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          117,
+          119
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER",
+          "O"
+        ],
+        "max_token_score": 0.19895917177200317,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          119,
+          121
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          1
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.1644083857536316,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          121,
+          123
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.16818279027938843,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          123,
+          125
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          4
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.22563320398330688,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          125,
+          127
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.23947256803512573,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          127,
+          129
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.2033742070198059,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          129,
+          131
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.23608970642089844,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          131,
+          133
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.21739065647125244,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          133,
+          135
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.25300949811935425,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          135,
+          139
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          1,
+          2,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.2431618571281433,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          139,
+          142
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          2,
+          2,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.20350366830825806,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          142,
+          145
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          3,
+          2,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.23590964078903198,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          145,
+          146
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.19924503564834595,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          146,
+          148
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          5
+        ],
+        "max_set_size": 5,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "B-QUESTION",
+          "I-ANSWER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.4006754159927368,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          148,
+          150
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.1918109655380249,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          150,
+          152
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          3,
+          1
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.1938115954399109,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          152,
+          155
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          1,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.18345576524734497,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          155,
+          157
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          1
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.14647984504699707,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          157,
+          160
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          1,
+          1
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.15304076671600342,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          160,
+          162
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.13383698463439941,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          162,
+          164
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          1
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.1450226902961731,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          164,
+          167
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.12648504972457886,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          167,
+          169
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.14366167783737183,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          169,
+          173
+        ],
+        "labels": [
+          "I-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          4,
+          3,
+          4,
+          1
+        ],
+        "max_set_size": 4,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "B-HEADER",
+          "I-HEADER",
+          "I-QUESTION"
+        ],
+        "max_token_score": 0.43725013732910156,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          173,
+          175
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          2,
+          1
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "I-HEADER"
+        ],
+        "max_token_score": 0.19174855947494507,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          175,
+          177
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          1
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.1664617657661438,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          177,
+          178
+        ],
+        "labels": [
+          "B-ANSWER"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-QUESTION",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.33380603790283203,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          178,
+          182
+        ],
+        "labels": [
+          "I-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          2,
+          3,
+          2
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "max_token_score": 0.3901659846305847,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          182,
+          183
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.14986968040466309,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          183,
+          184
+        ],
+        "labels": [
+          "B-QUESTION"
+        ],
+        "set_sizes": [
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER"
+        ],
+        "max_token_score": 0.1851348876953125,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          184,
+          186
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "O"
+        ],
+        "max_token_score": 0.23134422302246094,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "ANSWER",
+        "word_span": [
+          186,
+          189
+        ],
+        "labels": [
+          "B-ANSWER",
+          "I-ANSWER",
+          "I-ANSWER"
+        ],
+        "set_sizes": [
+          1,
+          2,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.19311493635177612,
+        "threshold": 0.9562931656837463,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "QUESTION",
+        "word_span": [
+          189,
+          191
+        ],
+        "labels": [
+          "B-QUESTION",
+          "I-QUESTION"
+        ],
+        "set_sizes": [
+          2,
+          2
+        ],
+        "max_set_size": 2,
+        "other_labels_in_set": [
+          "B-HEADER",
+          "I-HEADER"
+        ],
+        "max_token_score": 0.26147735118865967,
+        "threshold": 0.9351216554641724,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      }
+    ],
+    "unassigned_field_candidates": [
+      {
+        "word_index": 43,
+        "candidate_labels": [
+          "B-HEADER",
+          "I-HEADER",
+          "B-ANSWER"
+        ]
+      },
+      {
+        "word_index": 44,
+        "candidate_labels": [
+          "B-HEADER",
+          "I-HEADER",
+          "B-ANSWER"
+        ]
+      },
+      {
+        "word_index": 45,
+        "candidate_labels": [
+          "I-HEADER",
+          "I-ANSWER"
+        ]
+      },
+      {
+        "word_index": 46,
+        "candidate_labels": [
+          "B-HEADER",
+          "I-HEADER",
+          "I-ANSWER"
+        ]
+      },
+      {
+        "word_index": 191,
+        "candidate_labels": [
+          "B-HEADER",
+          "B-QUESTION"
+        ]
+      },
+      {
+        "word_index": 192,
+        "candidate_labels": [
+          "I-HEADER",
+          "I-QUESTION",
+          "I-ANSWER"
+        ]
+      },
+      {
+        "word_index": 193,
+        "candidate_labels": [
+          "I-HEADER",
+          "I-QUESTION",
+          "I-ANSWER"
+        ]
+      }
+    ],
+    "summary": {
+      "n_fields": 100,
+      "status_counts": {
+        "covered": 15,
+        "ambiguous_review": 85,
+        "conflict_review": 0,
+        "empty_abstain": 0
+      },
+      "route": "review"
+    },
+    "calibration": {
+      "alpha": 0.1,
+      "m0": 25,
+      "temperature": 1.2598073482513428,
+      "pooled_lambda": 0.951165497303009,
+      "threshold_mode": "field-conditional SpanCRC with pooled fallback",
+      "fallback_fields": [],
+      "guarantee": "E[per-document fraction of missed gold fields] <= alpha, for documents exchangeable with the calibration documents",
+      "status_definitions": {
+        "covered": "every word's calibrated set is exactly the predicted label",
+        "ambiguous_review": "every word keeps the predicted label, but some word's set also admits other labels",
+        "conflict_review": "some word's calibrated set is non-empty but excludes the predicted label",
+        "empty_abstain": "some word's calibrated set is empty: no label clears its threshold"
+      }
+    },
+    "redacted": "words, boxes and the document image are omitted: the dataset's redistribution terms are not cleared (docs/release/DATASET_LICENSE_AUDIT.md). Re-run tools/showcase_examples.py --full on your own copy of the dataset for the complete output."
+  }
+}

@@ -1,0 +1,449 @@
+{
+  "dataset": "cord",
+  "doc_id": "cord_test_0042",
+  "split": "test",
+  "role": "representative",
+  "selection": {
+    "rule": "sorted by (word count, doc_id) over eligible documents; lower median",
+    "rank": 49,
+    "n_eligible": 100,
+    "n_words": 20
+  },
+  "attribution": {
+    "dataset": "CORD v2",
+    "source": "https://huggingface.co/datasets/naver-clova-ix/cord-v2",
+    "revision": "7f0115a4b758a71d6473b8d085751692da2fef98",
+    "license": "CC BY 4.0",
+    "citation": "Park et al., CORD: A Consolidated Receipt Dataset for Post-OCR Parsing, Document Intelligence Workshop at NeurIPS 2019",
+    "source_index_in_split": 42
+  },
+  "ocr": "dataset-provided OCR words and boxes (no OCR engine is run)",
+  "redistribution_cleared": true,
+  "ground_truth": {
+    "fields": [
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          0,
+          1
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Chicken HCC. 1Pcs",
+        "word_span": [
+          1,
+          4
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "15.000",
+        "word_span": [
+          4,
+          5
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "SUB_TOTAL.SUBTOTAL_PRICE",
+        "text": "Sub Total 15,000",
+        "word_span": [
+          5,
+          8
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "SUB_TOTAL.TAX_PRICE",
+        "text": "P.Rest 10 % 1,500",
+        "word_span": [
+          8,
+          12
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "TOTAL.TOTAL_PRICE",
+        "text": "Total 16,500",
+        "word_span": [
+          12,
+          14
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "TOTAL.CASHPRICE",
+        "text": "Cash 50,000",
+        "word_span": [
+          14,
+          16
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "TOTAL.CHANGEPRICE",
+        "text": "Kembali 33,500",
+        "word_span": [
+          16,
+          18
+        ],
+        "covered_by_calibrated_sets": true
+      },
+      {
+        "type": "TOTAL.MENUQTY_CNT",
+        "text": "1 Items,",
+        "word_span": [
+          18,
+          20
+        ],
+        "covered_by_calibrated_sets": true
+      }
+    ],
+    "n_gold_fields": 9,
+    "n_missed": 0,
+    "document_field_miss_fraction": 0.0
+  },
+  "image": "document.png",
+  "prediction": {
+    "model": "MHamdan/calidoc-layoutlmv3-large-cord",
+    "n_words": 20,
+    "n_words_scored": 20,
+    "n_words_truncated": 0,
+    "fields": [
+      {
+        "type": "MENU.CNT",
+        "text": "1",
+        "word_span": [
+          0,
+          1
+        ],
+        "bbox": [
+          172,
+          410,
+          186,
+          425
+        ],
+        "labels": [
+          "B-MENU.CNT"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0036540627479553223,
+        "threshold": 0.022054076194763184,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.NM",
+        "text": "Chicken HCC. 1Pcs",
+        "word_span": [
+          1,
+          4
+        ],
+        "bbox": [
+          236,
+          410,
+          464,
+          427
+        ],
+        "labels": [
+          "B-MENU.NM",
+          "I-MENU.NM",
+          "I-MENU.NM"
+        ],
+        "set_sizes": [
+          3,
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.003399670124053955,
+        "threshold": 0.06673496961593628,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "MENU.PRICE",
+        "text": "15.000",
+        "word_span": [
+          4,
+          5
+        ],
+        "bbox": [
+          598,
+          409,
+          681,
+          425
+        ],
+        "labels": [
+          "B-MENU.PRICE"
+        ],
+        "set_sizes": [
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0044269561767578125,
+        "threshold": 0.06055116653442383,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "SUB_TOTAL.SUBTOTAL_PRICE",
+        "text": "Sub Total 15,000",
+        "word_span": [
+          5,
+          8
+        ],
+        "bbox": [
+          381,
+          444,
+          681,
+          463
+        ],
+        "labels": [
+          "B-SUB_TOTAL.SUBTOTAL_PRICE",
+          "I-SUB_TOTAL.SUBTOTAL_PRICE",
+          "I-SUB_TOTAL.SUBTOTAL_PRICE"
+        ],
+        "set_sizes": [
+          3,
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.009229838848114014,
+        "threshold": 0.3120020031929016,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "SUB_TOTAL.TAX_PRICE",
+        "text": "P.Rest 10 % 1,500",
+        "word_span": [
+          8,
+          12
+        ],
+        "bbox": [
+          357,
+          500,
+          681,
+          517
+        ],
+        "labels": [
+          "B-SUB_TOTAL.TAX_PRICE",
+          "I-SUB_TOTAL.TAX_PRICE",
+          "I-SUB_TOTAL.TAX_PRICE",
+          "I-SUB_TOTAL.TAX_PRICE"
+        ],
+        "set_sizes": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.016713261604309082,
+        "threshold": 0.1890329122543335,
+        "threshold_source": "pooled_fallback",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "TOTAL.TOTAL_PRICE",
+        "text": "Total 16,500",
+        "word_span": [
+          12,
+          14
+        ],
+        "bbox": [
+          435,
+          536,
+          686,
+          567
+        ],
+        "labels": [
+          "B-TOTAL.TOTAL_PRICE",
+          "I-TOTAL.TOTAL_PRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.007780790328979492,
+        "threshold": 0.014907300472259521,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "TOTAL.CASHPRICE",
+        "text": "Cash 50,000",
+        "word_span": [
+          14,
+          16
+        ],
+        "bbox": [
+          446,
+          566,
+          683,
+          583
+        ],
+        "labels": [
+          "B-TOTAL.CASHPRICE",
+          "I-TOTAL.CASHPRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.007844269275665283,
+        "threshold": 0.05941289663314819,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "TOTAL.CHANGEPRICE",
+        "text": "Kembali 33,500",
+        "word_span": [
+          16,
+          18
+        ],
+        "bbox": [
+          407,
+          600,
+          685,
+          621
+        ],
+        "labels": [
+          "B-TOTAL.CHANGEPRICE",
+          "I-TOTAL.CHANGEPRICE"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.007380187511444092,
+        "threshold": 0.029871702194213867,
+        "threshold_source": "field",
+        "status": "ambiguous_review"
+      },
+      {
+        "type": "TOTAL.MENUQTY_CNT",
+        "text": "1 Items,",
+        "word_span": [
+          18,
+          20
+        ],
+        "bbox": [
+          233,
+          680,
+          339,
+          699
+        ],
+        "labels": [
+          "B-TOTAL.MENUQTY_CNT",
+          "I-TOTAL.MENUQTY_CNT"
+        ],
+        "set_sizes": [
+          3,
+          3
+        ],
+        "max_set_size": 3,
+        "other_labels_in_set": [
+          "B-MENU.SUB.CNT",
+          "I-MENU.SUB.CNT"
+        ],
+        "max_token_score": 0.0736914873123169,
+        "threshold": 0.1890329122543335,
+        "threshold_source": "pooled_fallback",
+        "status": "ambiguous_review"
+      }
+    ],
+    "unassigned_field_candidates": [],
+    "summary": {
+      "n_fields": 9,
+      "status_counts": {
+        "covered": 0,
+        "ambiguous_review": 9,
+        "conflict_review": 0,
+        "empty_abstain": 0
+      },
+      "route": "review"
+    },
+    "calibration": {
+      "alpha": 0.1,
+      "m0": 25,
+      "temperature": 0.8946070671081543,
+      "pooled_lambda": 0.1890329122543335,
+      "threshold_mode": "field-conditional SpanCRC with pooled fallback",
+      "fallback_fields": [
+        "MENU.DISCOUNTPRICE",
+        "MENU.ETC",
+        "MENU.ITEMSUBTOTAL",
+        "MENU.NUM",
+        "MENU.SUB.PRICE",
+        "MENU.SUB.UNITPRICE",
+        "MENU.UNITPRICE",
+        "MENU.VATYN",
+        "SUB_TOTAL.DISCOUNT_PRICE",
+        "SUB_TOTAL.ETC",
+        "SUB_TOTAL.OTHERSVC_PRICE",
+        "SUB_TOTAL.SERVICE_PRICE",
+        "SUB_TOTAL.TAX_PRICE",
+        "TOTAL.CREDITCARDPRICE",
+        "TOTAL.EMONEYPRICE",
+        "TOTAL.MENUQTY_CNT",
+        "TOTAL.MENUTYPE_CNT",
+        "TOTAL.TOTAL_ETC",
+        "VOID_MENU.NM",
+        "VOID_MENU.PRICE"
+      ],
+      "guarantee": "E[per-document fraction of missed gold fields] <= alpha, for documents exchangeable with the calibration documents",
+      "status_definitions": {
+        "covered": "every word's calibrated set is exactly the predicted label",
+        "ambiguous_review": "every word keeps the predicted label, but some word's set also admits other labels",
+        "conflict_review": "some word's calibrated set is non-empty but excludes the predicted label",
+        "empty_abstain": "some word's calibrated set is empty: no label clears its threshold"
+      }
+    }
+  }
+}

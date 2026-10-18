@@ -1,0 +1,381 @@
+{
+  "dataset": "wildreceipt",
+  "doc_id": "wildreceipt_test_32abb05dc239b237b39b094a784e23cd7f251dbb",
+  "split": "test",
+  "role": "representative",
+  "selection": {
+    "rule": "sorted by (word count, doc_id) over eligible documents; lower median",
+    "rank": 70,
+    "n_eligible": 142,
+    "n_words": 34
+  },
+  "attribution": {
+    "dataset": "WildReceipt",
+    "source": "https://mmocr.readthedocs.io/en/dev-1.x/user_guides/data_prepare/datasetzoo.html",
+    "license": "none stated by the authors",
+    "citation": "Sun et al., Spatial Dual-Modality Graph Reasoning for Key Information Extraction, arXiv:2103.14470, 2021"
+  },
+  "ocr": "dataset-provided OCR words and boxes (no OCR engine is run)",
+  "redistribution_cleared": false,
+  "prediction": {
+    "model": "MHamdan/calidoc-layoutlmv3-large-wildreceipt",
+    "n_words": 34,
+    "n_words_scored": 34,
+    "n_words_truncated": 0,
+    "fields": [
+      {
+        "type": "Time_value",
+        "word_span": [
+          0,
+          1
+        ],
+        "labels": [
+          "B-Time_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.018291473388671875,
+        "threshold": 0.041799962520599365,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Date_value",
+        "word_span": [
+          1,
+          2
+        ],
+        "labels": [
+          "B-Date_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.016147255897521973,
+        "threshold": 0.021365880966186523,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Store_name_value",
+        "word_span": [
+          2,
+          3
+        ],
+        "labels": [
+          "B-Store_name_value"
+        ],
+        "set_sizes": [
+          0
+        ],
+        "max_set_size": 0,
+        "other_labels_in_set": [],
+        "max_token_score": 0.3089115619659424,
+        "threshold": 0.22260504961013794,
+        "threshold_source": "field",
+        "status": "empty_abstain"
+      },
+      {
+        "type": "Prod_item_key",
+        "word_span": [
+          7,
+          8
+        ],
+        "labels": [
+          "B-Prod_item_key"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.08759647607803345,
+        "threshold": 0.43490225076675415,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Prod_quantity_value",
+        "word_span": [
+          8,
+          9
+        ],
+        "labels": [
+          "B-Prod_quantity_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.025688588619232178,
+        "threshold": 0.06475168466567993,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Prod_price_value",
+        "word_span": [
+          9,
+          10
+        ],
+        "labels": [
+          "B-Prod_price_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.030674338340759277,
+        "threshold": 0.04906386137008667,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Subtotal_value",
+        "word_span": [
+          11,
+          12
+        ],
+        "labels": [
+          "B-Subtotal_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.04686540365219116,
+        "threshold": 0.3262147903442383,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Subtotal_value",
+        "word_span": [
+          13,
+          14
+        ],
+        "labels": [
+          "B-Subtotal_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.02966141700744629,
+        "threshold": 0.3262147903442383,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Tax_value",
+        "word_span": [
+          14,
+          15
+        ],
+        "labels": [
+          "B-Tax_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.02387756109237671,
+        "threshold": 0.24512648582458496,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Total_value",
+        "word_span": [
+          15,
+          16
+        ],
+        "labels": [
+          "B-Total_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.0429682731628418,
+        "threshold": 0.6069777011871338,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Total_value",
+        "word_span": [
+          18,
+          19
+        ],
+        "labels": [
+          "B-Total_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.10592353343963623,
+        "threshold": 0.6069777011871338,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Prod_item_value",
+        "word_span": [
+          19,
+          20
+        ],
+        "labels": [
+          "B-Prod_item_value"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.01447296142578125,
+        "threshold": 0.08937335014343262,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Subtotal_key",
+        "word_span": [
+          23,
+          24
+        ],
+        "labels": [
+          "B-Subtotal_key"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.05089336633682251,
+        "threshold": 0.21248310804367065,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Subtotal_key",
+        "word_span": [
+          25,
+          26
+        ],
+        "labels": [
+          "B-Subtotal_key"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.023429930210113525,
+        "threshold": 0.21248310804367065,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Tax_key",
+        "word_span": [
+          26,
+          27
+        ],
+        "labels": [
+          "B-Tax_key"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.021180331707000732,
+        "threshold": 0.19243311882019043,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Total_key",
+        "word_span": [
+          27,
+          28
+        ],
+        "labels": [
+          "B-Total_key"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.019325077533721924,
+        "threshold": 0.6189708709716797,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "Total_key",
+        "word_span": [
+          30,
+          31
+        ],
+        "labels": [
+          "B-Total_key"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.05119824409484863,
+        "threshold": 0.6189708709716797,
+        "threshold_source": "field",
+        "status": "covered"
+      }
+    ],
+    "unassigned_field_candidates": [],
+    "summary": {
+      "n_fields": 17,
+      "status_counts": {
+        "covered": 16,
+        "ambiguous_review": 0,
+        "conflict_review": 0,
+        "empty_abstain": 1
+      },
+      "route": "review"
+    },
+    "calibration": {
+      "alpha": 0.1,
+      "m0": 25,
+      "temperature": 1.1143670082092285,
+      "pooled_lambda": 0.14748835563659668,
+      "threshold_mode": "field-conditional SpanCRC with pooled fallback",
+      "fallback_fields": [
+        "Store_addr_key",
+        "Store_name_key"
+      ],
+      "guarantee": "E[per-document fraction of missed gold fields] <= alpha, for documents exchangeable with the calibration documents",
+      "status_definitions": {
+        "covered": "every word's calibrated set is exactly the predicted label",
+        "ambiguous_review": "every word keeps the predicted label, but some word's set also admits other labels",
+        "conflict_review": "some word's calibrated set is non-empty but excludes the predicted label",
+        "empty_abstain": "some word's calibrated set is empty: no label clears its threshold"
+      }
+    },
+    "redacted": "words, boxes and the document image are omitted: the dataset's redistribution terms are not cleared (docs/release/DATASET_LICENSE_AUDIT.md). Re-run tools/showcase_examples.py --full on your own copy of the dataset for the complete output."
+  }
+}

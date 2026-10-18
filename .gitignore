@@ -1,7 +1,9 @@
 # ---------------------------------------------------------------- local only
 # Paper writing, planning notes, prompts, and AI-assistant config stay on this
-# machine. Nothing under these paths is ever pushed.
-docs/
+# machine. Nothing under these paths is ever pushed, except the public release
+# audits in docs/release/.
+docs/*
+!docs/release/
 local/
 .claude/
 CLAUDE.md
@@ -18,7 +20,7 @@ checkpoints/
 results/
 logs/
 build/
-release/
+/release/
 *.tar
 *.tar.gz
 *.sha256

@@ -1,0 +1,157 @@
+{
+  "dataset": "sroie",
+  "doc_id": "sroie_test_X51005568889",
+  "split": "test",
+  "role": "representative",
+  "selection": {
+    "rule": "sorted by (word count, doc_id) over eligible documents; lower median",
+    "rank": 52,
+    "n_eligible": 105,
+    "n_words": 105
+  },
+  "attribution": {
+    "dataset": "SROIE (ICDAR 2019), darentang/sroie pre-tagged lineage",
+    "source": "https://rrc.cvc.uab.es/?ch=13",
+    "license": "unclear (CC BY 4.0 asserted only by third-party mirrors)",
+    "citation": "Huang et al., ICDAR2019 Competition on Scanned Receipt OCR and Information Extraction, ICDAR 2019"
+  },
+  "ocr": "dataset-provided OCR words and boxes (no OCR engine is run)",
+  "redistribution_cleared": false,
+  "prediction": {
+    "model": "MHamdan/calidoc-layoutlmv3-large-sroie",
+    "n_words": 105,
+    "n_words_scored": 105,
+    "n_words_truncated": 0,
+    "fields": [
+      {
+        "type": "COMPANY",
+        "word_span": [
+          0,
+          4
+        ],
+        "labels": [
+          "B-COMPANY",
+          "I-COMPANY",
+          "I-COMPANY",
+          "I-COMPANY"
+        ],
+        "set_sizes": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.04416733980178833,
+        "threshold": 0.1402074694633484,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "ADDRESS",
+        "word_span": [
+          9,
+          20
+        ],
+        "labels": [
+          "B-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS",
+          "I-ADDRESS"
+        ],
+        "set_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.02887195348739624,
+        "threshold": 0.10132354497909546,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "DATE",
+        "word_span": [
+          30,
+          31
+        ],
+        "labels": [
+          "B-DATE"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.007872223854064941,
+        "threshold": 0.022427856922149658,
+        "threshold_source": "field",
+        "status": "covered"
+      },
+      {
+        "type": "TOTAL",
+        "word_span": [
+          49,
+          50
+        ],
+        "labels": [
+          "B-TOTAL"
+        ],
+        "set_sizes": [
+          1
+        ],
+        "max_set_size": 1,
+        "other_labels_in_set": [],
+        "max_token_score": 0.011317193508148193,
+        "threshold": 0.07653647661209106,
+        "threshold_source": "field",
+        "status": "covered"
+      }
+    ],
+    "unassigned_field_candidates": [],
+    "summary": {
+      "n_fields": 4,
+      "status_counts": {
+        "covered": 4,
+        "ambiguous_review": 0,
+        "conflict_review": 0,
+        "empty_abstain": 0
+      },
+      "route": "accept"
+    },
+    "calibration": {
+      "alpha": 0.1,
+      "m0": 25,
+      "temperature": 1.5912721157073975,
+      "pooled_lambda": 0.07680332660675049,
+      "threshold_mode": "field-conditional SpanCRC with pooled fallback",
+      "fallback_fields": [],
+      "guarantee": "E[per-document fraction of missed gold fields] <= alpha, for documents exchangeable with the calibration documents",
+      "status_definitions": {
+        "covered": "every word's calibrated set is exactly the predicted label",
+        "ambiguous_review": "every word keeps the predicted label, but some word's set also admits other labels",
+        "conflict_review": "some word's calibrated set is non-empty but excludes the predicted label",
+        "empty_abstain": "some word's calibrated set is empty: no label clears its threshold"
+      }
+    },
+    "redacted": "words, boxes and the document image are omitted: the dataset's redistribution terms are not cleared (docs/release/DATASET_LICENSE_AUDIT.md). Re-run tools/showcase_examples.py --full on your own copy of the dataset for the complete output."
+  }
+}
