@@ -1,6 +1,6 @@
 # Public release smoke test
 
-Date: 2026-10-17. Machine: lytos (Linux), fresh virtualenv, CPU inference.
+Date: 2026-10-17. Machine: local Linux workstation, fresh virtualenv, CPU inference.
 
 ## Status
 
@@ -15,7 +15,7 @@ Date: 2026-10-17. Machine: lytos (Linux), fresh virtualenv, CPU inference.
 
 ```bash
 python -m venv venv && . venv/bin/activate
-git clone /home/mhamdan/Calidoc CaliDoc && cd CaliDoc    # after the push: git clone https://github.com/MHHamdan/CaliDoc.git
+git clone <local checkout> CaliDoc && cd CaliDoc       # after the push: git clone https://github.com/MHHamdan/CaliDoc.git
 pip install .
 pip install matplotlib                                   # renderer only
 unset HF_TOKEN HUGGING_FACE_HUB_TOKEN
@@ -85,3 +85,46 @@ transformers 5.20.1.
 `402 Payment Required`: hosting Gradio Spaces on free cpu-basic hardware requires a PRO
 subscription. The app is prepared and tested locally in `release/space/`. Its
 `requirements.txt` pins `calidoc` to commit `2a83fa7`.
+
+## Interactive demo clean room (2026-10-21)
+
+Each check ran in its own fresh virtualenv outside the repository, with anonymous Hub
+access (no token, empty `HF_HOME`).
+
+| check | source | result |
+|---|---|---|
+| A. Demo examples | anonymous `hf_hub_download` from dataset `MHamdan/calidoc-demo-examples` | PASS |
+| B. Package from public GitHub | `pip install "calidoc @ git+https://github.com/MHHamdan/CaliDoc.git"` | PASS |
+| C. Gradio app | clone of the demo commit, `pip install -e ".[demo]"`, `python demo/gradio/app.py` (gradio 6.30.0, transformers 5.20.2), driven by headless Chromium | PASS |
+| D. Colab notebook | `notebooks/CaliDoc_WACV2027_Demo.ipynb` executed with nbclient in a fresh kernel environment | PASS |
+
+**A. Demo examples.** All file sha256 hashes match `metadata.json`. Image sizes are
+1836×3264. Word counts equal box counts (20 and 40), each `expected_prediction.json`
+carries its own `doc_id`, and the license is CC BY 4.0.
+
+**B. Package from public GitHub.** The installed package was run on the downloaded
+`cord_test_0014`. Its output equals `expected_prediction.json` (fields, labels, set sizes,
+statuses): 24 `ambiguous_review` and 1 `conflict_review`.
+
+**C. Gradio app.**
+- The default tab loaded `cord_test_0042` with no input.
+- Both built-in examples ran, and each reported "matches the published expected output".
+- `cord_test_0014` showed the *Coupon 100,000* field as conflict / review.
+- No private dataset access was needed.
+- *Upload Your Own* was checked separately:
+  - pixel and `normalized_1000` boxes give identical output;
+  - malformed OCR JSON is rejected with a message.
+
+**D. Colab notebook.**
+- The optional `demo.launch(share=True)` cell is excluded; C covers it.
+- All 7 code cells ran with 0 errors.
+- Both examples reproduced the published output; `cord_test_0014` explains the Coupon
+  conflict.
+- **Stand-in:** C and D cloned the local commit instead of GitHub, because the demo commit
+  is not pushed yet. Only the clone URL differs.
+- **After the push:** re-run C and D against `https://github.com/MHHamdan/CaliDoc.git`, then
+  open the Colab badge link.
+
+No Hugging Face Space is used. Hosting a Gradio Space on the free tier requires a paid
+account (HTTP 402), so the public demo paths are the GitHub source, Google Colab, and the
+local app.

@@ -45,6 +45,7 @@ setup(
     ],
     extras_require={
         "research": research,
+        "demo": ["gradio>=5.0"],
         "dev": [
             "pytest>=7.4.0",
             "pytest-cov>=4.1.0",

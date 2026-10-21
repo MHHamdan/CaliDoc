@@ -1,0 +1,2 @@
+calidoc @ git+https://github.com/MHHamdan/CaliDoc.git
+gradio>=5.0

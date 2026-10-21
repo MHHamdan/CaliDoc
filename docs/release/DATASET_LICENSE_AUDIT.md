@@ -45,6 +45,12 @@ the code's Apache-2.0 license.
   keeps document IDs, field types, word positions, set sizes, thresholds and statuses. It
   contains no words, boxes, images or gold labels. `tools/showcase_examples.py --full`
   regenerates the complete output on a local copy of the dataset.
+- **Demo-example dataset repository.** `MHamdan/calidoc-demo-examples` (Hugging Face,
+  dataset type, CC BY 4.0) holds only the two CORD v2 test receipts already cleared above:
+  `cord_test_0042` and `cord_test_0014`, at test indices 42 and 14 of
+  `naver-clova-ix/cord-v2` @ `7f0115a4`. Each comes with its image, OCR, metadata and the
+  released model's output. The dataset card carries the CORD attribution. No FUNSD,
+  WildReceipt or SROIE material is uploaded.
 - **Weight repositories.** These contain no dataset images or annotations. The calibration
   manifests list document identifiers only.
 - **Training-data terms on the model cards.** Each card states its dataset's terms. FUNSD
