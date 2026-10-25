@@ -1,7 +1,8 @@
 # CaliDoc
 
 **Calibrated field-level risk and annotation auditing for document information extraction.**
-Mohammed Hamdan and Mohamed Cheriet, Synchromedia Laboratory, École de technologie supérieure (ÉTS), Montréal.
+
+Mohammed Hamdan and Mohamed Cheriet · Synchromedia Laboratory, École de technologie supérieure (ÉTS), Montréal · **WACV 2027** (Evaluations and Datasets Track)
 
 [![WACV 2027](https://img.shields.io/badge/WACV-2027-1f4e79)](https://wacv.thecvf.com/)
 [![Paper](https://img.shields.io/badge/paper-proceedings%20link%20to%20follow-lightgrey)](#citation)
@@ -13,40 +14,54 @@ Mohammed Hamdan and Mohamed Cheriet, Synchromedia Laboratory, École de technolo
 [![Weights license](https://img.shields.io/badge/weights-CC%20BY--NC--SA%204.0-orange)](#license)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776ab)
 
-Accepted at **WACV 2027** (IEEE/CVF Winter Conference on Applications of Computer Vision,
-Evaluations and Datasets Track).
-
 > Token-level reliability is not complete-field reliability.
-> CaliDoc calibrates and audits the object downstream systems actually consume:
-> the complete field.
+> CaliDoc calibrates the complete fields that downstream systems actually consume.
 
 ![CaliDoc overview: a fixed LayoutLMv3 extractor feeds max-token span scores into document-level conformal risk control (SpanCRC); the same pooled threshold drives a boundary-escape annotation audit with a conditional randomization null, Holm control, and document-blocked bootstrap corroboration, validated by independent re-alignment and repair on SROIE.](assets/architecture/calidoc_architecture.svg)
 
-## What CaliDoc Does
-
-1. **Complete-field reliability.** A field is scored by its worst word,
-   *S(s) = max<sub>i∈s</sub> (1 − p(g<sub>i</sub> | x<sub>i</sub>))*. A field is fully
-   covered at threshold λ exactly when *S(s) ≤ λ*. The extractor is not retrained.
-2. **Conformal field-miss risk (SpanCRC).** With the document as the exchangeable unit,
-   conformal risk control picks thresholds so that the **expected per-document fraction of
-   missed gold fields is at most α**. Field types with enough calibration support get
-   their own threshold; the rest fall back to a pooled one.
-3. **Annotation auditing.** At the same calibrated threshold, a boundary-escape test asks
-   whether escapes pile up at field edges, which is where alignment and BIO-labelling
-   errors live. The test uses an explicit randomization null, Holm control and a
-   document-blocked bootstrap. On SROIE it flags `ADDRESS` and `COMPANY`.
-
 ## Try CaliDoc in 60 Seconds
 
-### Option 1: Google Colab (recommended)
+### Google Colab: Recommended
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MHHamdan/CaliDoc/blob/main/notebooks/CaliDoc_WACV2027_Demo.ipynb)
 
-The notebook installs CaliDoc from this repository and runs the released CORD model on
-two real test receipts. It can also launch the interactive app with a temporary public
-link. It needs no account, token or upload.
+1. Click **Open in Colab**. A standard runtime is enough, and a GPU is optional.
+2. Run **Step 1**. It installs CaliDoc from this repository.
+3. Choose a real WACV example (**Steps 2–3**) or **upload your own image** (**Step 4**).
+4. Released models download anonymously from Hugging Face.
+5. Automatic OCR runs locally in the Colab runtime with docTR.
+6. View pass / review / abstain routing for every field.
 
-### Option 2: Local Gradio app (for developers)
+No account, token or API key is required. **Step 5** optionally launches the full
+interactive app with `share=True`. This gives a temporary public Gradio link that exists
+only while your Colab session is running. There is no permanently hosted demo.
+
+### What runs in the public demo
+
+```
+User image (PNG / JPEG / WEBP)
+   ↓
+docTR OCR, run locally            ← public-demo convenience
+   ↓
+dataset-specific LayoutLMv3 checkpoint, from Hugging Face
+   ↓
+CaliDoc calibration (released SpanCRC thresholds)
+   ↓
+Pass / Review / Abstain for each field
+```
+
+| | OCR / input | guarantee |
+|---|---|---|
+| **WACV experiments** | benchmark-provided OCR and input pipeline | as stated in the paper, for documents exchangeable with the calibration documents |
+| **Public user-upload demo** | docTR automatic OCR | exploratory: uploads do not receive the paper's formal guarantee |
+
+Upload a PNG, JPEG, or WEBP document image. The public demo performs OCR locally with docTR.
+Advanced users may optionally supply OCR JSON to reproduce a specific preprocessing pipeline.
+
+docTR is a public-demo convenience and was not used as the benchmark OCR pipeline in the
+WACV experiments. The bundled real examples always use the benchmark OCR.
+
+### Local Gradio app (for developers)
 
 ```bash
 git clone https://github.com/MHHamdan/CaliDoc.git && cd CaliDoc
@@ -54,11 +69,10 @@ pip install -e ".[demo]"
 python demo/gradio/app.py        # http://127.0.0.1:7860
 ```
 
-The **Try a Real Example** tab runs without any input. **Upload Your Own** takes an image
-plus OCR words and boxes, with any of the four released models. See
-[`demo/gradio/README.md`](demo/gradio/README.md).
+**Try a Real Example** runs without any input. **Upload Your Own** needs only an image; OCR
+JSON is optional, under Advanced. See [`demo/gradio/README.md`](demo/gradio/README.md).
 
-### Option 3: Python API / command line
+### Python API and command line
 
 ```bash
 git clone https://github.com/MHHamdan/CaliDoc.git && cd CaliDoc
@@ -87,9 +101,35 @@ shipped in this repository. It writes one entry per extracted field:
 ```
 
 plus a document `summary.route` (`accept` / `review`) and the calibration metadata.
-**OCR is an input, not part of CaliDoc.** Bring your own words and boxes in the format of
+The library takes OCR words and boxes as input, in the format of
 [`ocr.json`](assets/examples/cord/cord_test_0042/ocr.json) (`box_format` `pixel` or
-`normalized_1000`).
+`normalized_1000`). Only the public demo adds automatic OCR.
+
+## What CaliDoc Does
+
+**What is CaliDoc?** A calibration-and-audit layer for document information extraction. It
+takes a key-information-extraction model, such as LayoutLMv3 on receipts or forms, and
+decides for each extracted field whether it can **pass** to a downstream system, needs
+**review**, or should **abstain**. The decision comes with a finite-sample bound on the
+expected fraction of missed fields per document.
+
+**Why does it matter?** Uncertainty is usually calibrated per token, but systems consume
+complete fields. On SROIE, token-level conformal prediction reaches 89.8% token coverage at
+a 90% target while **none of 420 gold fields** is fully covered.
+
+In more detail:
+
+1. **Complete-field reliability.** A field is scored by its worst word,
+   *S(s) = max<sub>i∈s</sub> (1 − p(g<sub>i</sub> | x<sub>i</sub>))*. A field is fully
+   covered at threshold λ exactly when *S(s) ≤ λ*. The extractor is not retrained.
+2. **Conformal field-miss risk (SpanCRC).** With the document as the exchangeable unit,
+   conformal risk control picks thresholds so that the **expected per-document fraction of
+   missed gold fields is at most α**. Field types with enough calibration support get
+   their own threshold; the rest fall back to a pooled one.
+3. **Annotation auditing.** At the same calibrated threshold, a boundary-escape test asks
+   whether escapes pile up at field edges, which is where alignment and BIO-labelling
+   errors live. The test uses an explicit randomization null, Holm control and a
+   document-blocked bootstrap. On SROIE it flags `ADDRESS` and `COMPANY`.
 
 ## CaliDoc in Action
 
@@ -103,16 +143,20 @@ and the demo app.
 [prediction.json](assets/examples/cord/cord_test_0042/prediction.json) ·
 [inputs on the Hub](https://huggingface.co/datasets/MHamdan/calidoc-demo-examples/tree/main/cord_test_0042)
 
+> **9/9 extracted fields match CORD gold, yet all 9 are routed for review because the
+> calibrated prediction sets are multi-label.** Prediction correctness and calibrated
+> operational routing answer different questions.
+
 ![CaliDoc demo app on CORD test receipt cord_test_0042](assets/demo/demo_cord_test_0042.png)
 
 | fields extracted | pass | review | abstain | pooled-fallback fields | correct vs. CORD gold |
 |---|---|---|---|---|---|
 | 9 | 0 | 9 | 0 | 2 | 9 / 9 |
 
-All 9 extractions are correct, and all 9 are still routed for review. On CORD the
-supported field type `MENU.SUB.CNT` has calibrated threshold λ = 1.0, so its label enters
-every word's prediction set. The paper documents this CORD cost, and the demo shows it
-rather than hiding it.
+The routing is not an error. On CORD the supported field type `MENU.SUB.CNT` has calibrated
+threshold λ = 1.0, so its label enters every word's prediction set, and a multi-label set
+means review. The paper documents this CORD cost, and the demo shows it rather than hiding
+it.
 
 ### Why review routing matters
 
@@ -124,6 +168,9 @@ rather than hiding it.
 | fields extracted | pass | review (ambiguous) | review (conflict) | abstain | correct vs. CORD gold |
 |---|---|---|---|---|---|
 | 25 | 0 | 24 | 1 | 0 | 24 / 25 |
+
+> **24/25 extracted fields match CORD gold. The one that does not, *Coupon 100,000*, is
+> the only field CaliDoc marks `conflict`, and it is routed for review.**
 
 Field 23, *Coupon 100,000*, is the one wrong extraction on the page: gold is
 `TOTAL.TOTAL_ETC`, predicted `SUB_TOTAL.ETC`. CaliDoc does not present it as a confident
@@ -378,8 +425,8 @@ The full audit, with verbatim license text, is in
 
 - **Dataset-specific checkpoints**, four English-script benchmarks, one backbone family.
   Calibration does not transfer to other domains, layouts or OCR engines.
-- **OCR dependence.** The paper uses dataset-provided OCR, and no OCR engine ships with
-  CaliDoc.
+- **OCR dependence.** The paper uses dataset-provided OCR. The library itself runs no OCR; the
+  public demo's docTR OCR is a convenience outside the evaluated pipeline.
 - **Max-score conservatism.** The worst word decides a field, so long fields need larger
   thresholds and larger sets.
 - **Support-limited conditioning.** Field types with fewer than m0 = 25 calibration spans

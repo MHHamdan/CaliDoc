@@ -7,8 +7,9 @@ each complete extracted field should pass through, be reviewed, or abstain, and 
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MHHamdan/CaliDoc/blob/main/notebooks/CaliDoc_WACV2027_Demo.ipynb)
 
-The notebook installs CaliDoc from GitHub and runs both real examples. It can also launch
-this app with a temporary public link. It needs no account, token or upload.
+The notebook installs CaliDoc from GitHub, runs both real examples, lets you upload your own
+image, and can launch this app with a temporary public link. It needs no account, token or
+API key.
 
 ## Run locally
 
@@ -19,9 +20,16 @@ pip install -e ".[demo]"
 python demo/gradio/app.py
 ```
 
-Then open http://127.0.0.1:7860. On first use the app downloads the CORD checkpoint
-(1.4 GB) and the two example documents from the Hugging Face Hub. It runs on CPU and uses
-a GPU if one is available.
+Python 3.10 or newer. pip selects docTR 1.0.x on Python 3.10 and docTR 1.1.x on 3.11+. Both
+were tested, as was Colab's Python 3.12.
+
+Then open http://127.0.0.1:7860.
+
+On first use the app downloads:
+- the CORD checkpoint (1.4 GB) and the two example documents, from the Hugging Face Hub;
+- the docTR OCR weights (about 100 MB), the first time an image is uploaded.
+
+CaliDoc runs on a GPU if one is available, otherwise on CPU. OCR always runs on CPU.
 
 ## Inputs
 
@@ -34,13 +42,18 @@ a GPU if one is available.
 
   The model is fixed to the CORD checkpoint, and each run is checked against the published
   expected output.
-- **Upload Your Own**: a document image plus an OCR JSON. CaliDoc does not run OCR:
+- **Upload Your Own**: upload a document image (PNG, JPEG or WEBP). The public demo performs
+  OCR locally with [docTR](https://github.com/mindee/doctr). Advanced users may optionally
+  provide OCR JSON to reproduce a specific preprocessing pipeline:
 
   ```json
   {"words": ["Total", "16,500"], "boxes": [[435, 536, 520, 567], [600, 536, 686, 567]], "box_format": "pixel"}
   ```
 
-  `box_format` is `"pixel"` (the default) or `"normalized_1000"`.
+  `box_format` is `"pixel"` (the default) or `"normalized_1000"`. Automatic OCR and OCR JSON
+  go through the same CaliDoc inference call. docTR was not used in the WACV experiments, and
+  user uploads are exploratory: they do not receive the paper's formal guarantee. Uploaded
+  images stay on the machine running the app. PDF input is not supported yet.
 
 ## Output
 

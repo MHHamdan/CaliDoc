@@ -1,2 +1,1 @@
-calidoc @ git+https://github.com/MHHamdan/CaliDoc.git
-gradio>=5.0
+calidoc[demo] @ git+https://github.com/MHHamdan/CaliDoc.git

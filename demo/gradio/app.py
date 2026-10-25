@@ -5,8 +5,10 @@ Two workflows:
 * **Try a Real Example** (default): two CORD v2 test receipts fetched from the
   public dataset repository ``MHamdan/calidoc-demo-examples`` and run through the
   released CORD checkpoint. No upload or token needed.
-* **Upload Your Own**: a document image plus OCR words and boxes, with any of
-  the four released dataset-specific checkpoints.
+* **Upload Your Own**: a document image, with any of the four released
+  dataset-specific checkpoints. OCR runs locally with docTR by default (a
+  public-demo convenience, not part of the WACV pipeline); an OCR JSON can be
+  supplied instead under Advanced.
 
 All extraction and calibration is done by ``calidoc.inference.CaliDocPredictor``;
 this file only fetches inputs and presents the output. Run with
@@ -16,15 +18,23 @@ this file only fetches inputs and presents the output. Run with
 
 from __future__ import annotations
 
+import atexit
 import html
 import json
+import os
+import shutil
+import tempfile
 from functools import lru_cache
+from pathlib import Path
 
-import gradio as gr
-from huggingface_hub import hf_hub_download
-from PIL import Image, ImageDraw, ImageFont
+os.environ.setdefault("GRADIO_ANALYTICS_ENABLED", "False")
 
-from calidoc.inference import CaliDocPredictor, normalize_boxes
+import gradio as gr  # noqa: E402
+import numpy as np  # noqa: E402
+from huggingface_hub import hf_hub_download  # noqa: E402
+from PIL import Image, ImageDraw, ImageFont, ImageOps  # noqa: E402
+
+from calidoc.inference import CaliDocPredictor, normalize_boxes  # noqa: E402
 
 EXAMPLES_REPO = "MHamdan/calidoc-demo-examples"
 GITHUB = "https://github.com/MHHamdan/CaliDoc"
@@ -54,6 +64,15 @@ EXAMPLES = {
 }
 DEFAULT_EXAMPLE = "CORD: Representative receipt"
 
+OCR_AUTO = "Automatic OCR (recommended)"
+OCR_MANUAL = "Use uploaded OCR JSON"
+OCR_ENGINE = "docTR ocr_predictor: db_resnet50 text detection + crnn_vgg16_bn recognition, pretrained weights"
+IMAGE_TYPES = [".png", ".jpg", ".jpeg", ".webp"]
+
+# per-process scratch space for generated OCR JSON downloads; removed on exit
+SESSION_DIR = tempfile.mkdtemp(prefix="calidoc_demo_")
+atexit.register(shutil.rmtree, SESSION_DIR, ignore_errors=True)
+
 # raw calibrated-set status from calidoc.inference -> (state, action) shown to people
 DISPLAY = {
     "covered": ("singleton", "pass"),
@@ -71,7 +90,8 @@ SCOPE_HTML = """
 <li>CaliDoc's finite-sample guarantee assumes exchangeability with the calibration distribution.
 Each released checkpoint is calibrated for its own benchmark, so results on unrelated document
 domains do not carry the same guarantee.</li>
-<li>OCR is an external input. CaliDoc does not run an OCR engine.</li>
+<li>OCR is an external input to CaliDoc. The WACV experiments use the benchmark OCR; the
+automatic OCR in <i>Upload Your Own</i> is a demo convenience.</li>
 <li>The boundary-escape annotation audit is a corpus-level diagnostic, not a per-document error
 detector, and it is not run here.</li>
 </ul></div>
@@ -102,8 +122,40 @@ CaliDoc accepts exactly this JSON (the format read by `python -m calidoc.predict
 - `box_format`: `"pixel"` (image pixel coordinates, the default when omitted) or
   `"normalized_1000"` (LayoutLMv3's 0 to 1000 grid).
 
+Pixel boxes refer to the image as displayed, after its EXIF orientation is applied.
+
 Only the first 512 sub-word tokens are scored. Words past that limit are reported as truncated.
 """
+
+
+OCR_TECH_MD = f"""
+- **Automatic OCR:** {OCR_ENGINE}. It runs locally on CPU, and its weights are downloaded
+  once from docTR's public model host. This is a demo convenience, not part of the WACV pipeline:
+  the paper's experiments use the benchmark-provided OCR.
+- **Conversion:** docTR word boxes become CaliDoc's input schema
+  `{{"words": [...], "boxes": [[x0, y0, x1, y1], ...], "box_format": "pixel"}}`. Automatic OCR
+  and uploaded OCR JSON go through the same CaliDoc inference call.
+- **Image handling:** EXIF orientation is applied before OCR. PDF input is not supported.
+- **Scoring:** words beyond LayoutLMv3's 512-token limit are not scored.
+"""
+
+UPLOAD_NOTE_HTML = """
+<div style="border:1px solid #cbd5e1;border-left:4px solid #d97706;border-radius:6px;padding:8px 14px;margin:4px 0 8px 0;font-size:0.95em">
+<b>Exploratory use.</b> Uploads do not receive the paper's formal guarantee, which assumes
+exchangeability with the calibration distribution, including its document and preprocessing pipeline.<br>
+Released models are benchmark-specific: for receipts, CORD or WildReceipt are the closest; other
+domains are exploratory.<br>
+Your document is processed only in this session, on this machine. It is not sent to any cloud service
+and is not stored.
+</div>
+"""
+
+EXPLORATORY_HTML = (
+    '<div style="display:inline-block;padding:2px 8px;border-radius:4px;background:#fef3c7;'
+    'color:#92400e;font-size:0.85em;font-weight:600;margin-bottom:6px">Exploratory user-upload '
+    'result</div><div style="font-size:0.85em;color:#475569;margin-bottom:6px"><b>Pass</b> means '
+    'the field is routed through under the selected calibrated rule; it does not certify semantic '
+    'correctness for an out-of-domain upload.</div>')
 
 
 # --------------------------------------------------------------------------- inputs
@@ -133,6 +185,88 @@ def boxes_for(ocr: dict, image: Image.Image):
     if fmt == "normalized_1000":
         return ocr["boxes"]
     raise gr.Error(f'Unsupported box_format {fmt!r}: use "pixel" or "normalized_1000".')
+
+
+def read_document(path) -> Image.Image:
+    """Open an uploaded image (PNG, JPEG, WEBP), honouring its EXIF orientation."""
+    if not path:
+        raise gr.Error("Please upload a document image.")
+    with open(path, "rb") as fh:
+        is_pdf = fh.read(5) == b"%PDF-"
+    if is_pdf or Path(path).suffix.lower() == ".pdf":
+        raise gr.Error("PDF support is not enabled yet. Please upload a page as PNG or JPEG.")
+    try:
+        with Image.open(path) as im:
+            return ImageOps.exif_transpose(im).convert("RGB")
+    except (OSError, ValueError, Image.DecompressionBombError):
+        raise gr.Error("This file could not be read as an image. Please upload a PNG, JPEG or "
+                       "WEBP image.")
+
+
+@lru_cache(maxsize=1)
+def ocr_engine():
+    """docTR OCR predictor, built once per process."""
+    try:
+        from doctr.models import ocr_predictor
+    except ImportError:
+        raise gr.Error('Automatic OCR needs docTR: pip install "calidoc[demo]" (or python-doctr). '
+                       "Alternatively provide OCR JSON under Advanced OCR options.")
+    return ocr_predictor(det_arch="db_resnet50", reco_arch="crnn_vgg16_bn", pretrained=True)
+
+
+def automatic_ocr(image: Image.Image) -> dict:
+    """Word-level OCR in CaliDoc's input schema (pixel boxes)."""
+    W, H = image.size
+    page = ocr_engine()([np.asarray(image)]).pages[0]
+    words, boxes = [], []
+    for block in page.blocks:
+        for line in block.lines:
+            for word in line.words:
+                text = word.value.strip()
+                if not text:
+                    continue
+                (x0, y0), (x1, y1) = word.geometry
+                words.append(text)
+                boxes.append([round(min(max(x0, 0), 1) * W), round(min(max(y0, 0), 1) * H),
+                              round(min(max(x1, 0), 1) * W), round(min(max(y1, 0), 1) * H)])
+    return {"words": words, "boxes": boxes, "box_format": "pixel"}
+
+
+def parse_ocr_json(path) -> dict:
+    """Read and validate an uploaded OCR JSON, with errors that point at the schema."""
+    hint = ' Expected {"words": [...], "boxes": [[x0, y0, x1, y1], ...], "box_format": "pixel"}.'
+    try:
+        with open(path, encoding="utf-8") as fh:
+            ocr = json.load(fh)
+    except UnicodeDecodeError:
+        raise gr.Error("The OCR file is not UTF-8 text." + hint)
+    except json.JSONDecodeError as e:
+        raise gr.Error(f"The OCR file is not valid JSON (line {e.lineno}, column {e.colno})." + hint)
+    if not isinstance(ocr, dict) or "words" not in ocr or "boxes" not in ocr:
+        raise gr.Error('The OCR JSON must be an object with "words" and "boxes".' + hint)
+    words, boxes = ocr["words"], ocr["boxes"]
+    if not isinstance(words, list) or not isinstance(boxes, list):
+        raise gr.Error('"words" and "boxes" must both be lists.' + hint)
+    if not words:
+        raise gr.Error('"words" is empty: there is nothing to extract.' + hint)
+    if len(words) != len(boxes):
+        raise gr.Error(f"{len(words)} words but {len(boxes)} boxes: every word needs one box." + hint)
+    for i, b in enumerate(boxes):
+        if (not isinstance(b, (list, tuple)) or len(b) != 4
+                or not all(isinstance(v, (int, float)) and not isinstance(v, bool) for v in b)):
+            raise gr.Error(f"Box {i} is {b!r}; each box must be four numbers [x0, y0, x1, y1]." + hint)
+        if b[2] < b[0] or b[3] < b[1]:
+            raise gr.Error(f"Box {i} is {b!r}; x1 must be >= x0 and y1 >= y0." + hint)
+    fmt = ocr.get("box_format", "pixel")
+    if fmt not in ("pixel", "normalized_1000"):
+        raise gr.Error(f'Unsupported box_format {fmt!r}: use "pixel" or "normalized_1000".')
+    return {"words": [str(w) for w in words], "boxes": [list(b) for b in boxes], "box_format": fmt}
+
+
+def infer(model_id: str, image: Image.Image, ocr: dict):
+    """The single CaliDoc inference call used by every workflow in this app."""
+    boxes = boxes_for(ocr, image)
+    return predictor(model_id).predict(image, [str(w) for w in ocr["words"]], boxes), boxes
 
 
 # --------------------------------------------------------------------------- presentation
@@ -205,7 +339,8 @@ def counts(result: dict) -> dict:
     }
 
 
-def summary_html(result: dict, dataset: str | None) -> str:
+def summary_html(result: dict, dataset: str | None, exploratory: bool = False,
+                 field_thresholds: dict | None = None) -> str:
     c = counts(result)
     cell = lambda label, v, color="#111827": (
         f'<div style="padding:6px 14px;border:1px solid #e2e8f0;border-radius:6px;text-align:center">'
@@ -216,14 +351,21 @@ def summary_html(result: dict, dataset: str | None) -> str:
         cell("Review", c["review"], COLORS["ambiguous"]), cell("Abstain", c["abstain"], COLORS["abstain"]),
         cell("Pooled-fallback fields", c["fallback"])])
     route = result["summary"]["route"]
-    out = (f'<div><b>CaliDoc decision summary</b> · document route: <b>{route}</b>'
+    out = (f'<div>{EXPLORATORY_HTML if exploratory else ""}'
+           f'<b>CaliDoc decision summary</b> · document route: <b>{route}</b>'
            f'<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">{cards}</div>')
-    if dataset == "cord":
-        out += ('<p style="font-size:0.9em;color:#475569;margin-top:8px">CORD is intentionally a '
-                'difficult CaliDoc operating regime. Many field types have limited calibration '
-                'support and fall back to the pooled threshold, and a few supported long-tail types '
-                'need very large thresholds, which produces larger prediction sets. The WACV paper '
-                'documents this behavior, and the demo does not hide it.</p>')
+    if dataset == "cord" and c["review"]:
+        title = ("Why is everything routed to review?" if c["review"] == c["fields"]
+                 else "Why are so many fields routed to review?")
+        wide = sorted(t for t, v in (field_thresholds or {}).items()
+                      if not v["fallback"] and v["lambda"] >= 1.0)
+        lam = (f", and one supported long-tail type ({', '.join(wide)}) has λ = 1.0"
+               if len(wide) == 1 else "")
+        out += ('<div style="margin-top:8px;padding:8px 12px;border-radius:6px;background:#f8fafc;'
+                'border:1px solid #e2e8f0;font-size:0.9em"><b>' + title + '</b><br>CORD is a '
+                'difficult calibration regime: many field types have limited calibration support'
+                + lam + ', which produces large prediction sets. Details under '
+                '<i>What happened?</i></div>')
     return out + "</div>"
 
 
@@ -300,6 +442,8 @@ def ground_truth_md(result: dict, expected: dict) -> str:
     gold_by_span = {tuple(f["word_span"]): f for f in gt["fields"]}
     wrong = [f for k, f in pred.items() if k not in gold]
     lines = ["### Ground-truth check (CORD gold labels, shown separately from routing)",
+             "*Evaluation only — not used by the routing decision.*",
+             "",
              f"- Gold fields: {gt['n_gold_fields']}; covered by their calibrated sets: "
              f"{gt['n_gold_fields'] - gt['n_missed']}.",
              f"- Predicted fields that exactly match a gold field: {len(pred) - len(wrong)} of {len(pred)}."]
@@ -341,29 +485,64 @@ def load_example(name: str):
 def run_example(name: str):
     ex = EXAMPLES[name]
     image, ocr, _, expected = example_inputs(ex["doc_id"])
-    result = predictor(ex["model"]).predict(image, ocr["words"], boxes_for(ocr, image))
+    result, boxes = infer(ex["model"], image, ocr)
     check = f"Reproducibility check: this run {check_against_expected(result, expected)}."
-    return (overlay(image, result, boxes_for(ocr, image)), summary_html(result, "cord"), table_rows(result),
+    fields = predictor(ex["model"]).fields
+    return (overlay(image, result, boxes), summary_html(result, "cord", field_thresholds=fields),
+            table_rows(result),
             explanation(result, "cord", predictor(ex["model"]).fields) + "\n\n" + check, ground_truth_md(result, expected), result)
 
 
-def run_upload(model_name: str, image, ocr_file):
-    if image is None or ocr_file is None:
-        raise gr.Error("Provide both a document image and its OCR JSON.")
+def ocr_overlay(image: Image.Image, boxes) -> Image.Image:
+    vis = display_image(image, max_h=900)
+    d = ImageDraw.Draw(vis)
+    W, H = vis.size
+    for x0, y0, x1, y1 in boxes:
+        d.rectangle([x0 * W / 1000, y0 * H / 1000, x1 * W / 1000, y1 * H / 1000],
+                    outline="#0f766e", width=max(1, round(W / 600)))
+    return vis
+
+
+def preview_document(path):
+    if not path:
+        return None
     try:
-        ocr = json.load(open(ocr_file if isinstance(ocr_file, str) else ocr_file.name))
-    except (OSError, ValueError) as e:
-        raise gr.Error(f"Could not read the OCR JSON: {e}")
-    if not isinstance(ocr, dict) or "words" not in ocr or "boxes" not in ocr:
-        raise gr.Error('The OCR JSON needs "words" and "boxes" (see the schema help).')
-    if len(ocr["words"]) != len(ocr["boxes"]):
-        raise gr.Error(f"{len(ocr['words'])} words but {len(ocr['boxes'])} boxes.")
-    image = image.convert("RGB")
-    dataset = MODELS[model_name].rsplit("-", 1)[-1]
-    boxes = boxes_for(ocr, image)
-    result = predictor(MODELS[model_name]).predict(image, [str(w) for w in ocr["words"]], boxes)
-    return (overlay(image, result, boxes), summary_html(result, dataset), table_rows(result),
-            explanation(result, dataset, predictor(MODELS[model_name]).fields), result)
+        return display_image(read_document(path))
+    except gr.Error as e:
+        gr.Warning(e.message)
+        return None
+
+
+def run_upload(model_name: str, doc_path, ocr_mode: str, ocr_file):
+    image = read_document(doc_path)
+    if ocr_mode == OCR_MANUAL:
+        if not ocr_file:
+            raise gr.Error("Please upload OCR JSON or switch back to Automatic OCR.")
+        ocr = parse_ocr_json(ocr_file)
+        source = "the uploaded OCR JSON"
+    else:
+        ocr = automatic_ocr(image)
+        if not ocr["words"]:
+            raise gr.Error("No text was detected. Try a clearer image or provide OCR JSON in "
+                           "Advanced mode.")
+        source = "automatic OCR (docTR, run locally)"
+    model_id = MODELS[model_name]
+    result, boxes = infer(model_id, image, ocr)
+    dataset = model_id.rsplit("-", 1)[-1]
+
+    fd, ocr_path = tempfile.mkstemp(prefix="ocr_", suffix=".json", dir=SESSION_DIR)
+    with os.fdopen(fd, "w", encoding="utf-8") as fh:
+        json.dump(ocr, fh, ensure_ascii=False)
+    first = ", ".join(f"`{html.escape(w)}`" for w in ocr["words"][:12])
+    more = " …" if len(ocr["words"]) > 12 else ""
+    ocr_md = (f"**OCR summary:** {_n(len(ocr['words']), 'word', 'words')} from {source}"
+              + (f"; {result['n_words_truncated']} beyond the 512-token limit were not scored"
+                 if result["n_words_truncated"] else "")
+              + f".  First words: {first}{more}")
+    return (ocr_md, ocr_overlay(image, boxes), ocr_path, overlay(image, result, boxes),
+            summary_html(result, dataset, exploratory=True,
+                         field_thresholds=predictor(model_id).fields), table_rows(result),
+            explanation(result, dataset, predictor(model_id).fields), result)
 
 
 # --------------------------------------------------------------------------- layout
@@ -371,20 +550,22 @@ def run_upload(model_name: str, image, ocr_file):
 def results_block():
     with gr.Row():
         with gr.Column(scale=5):
-            vis = gr.Image(label="Predicted fields (cropped to the OCR region)", type="pil", interactive=False)
+            vis = gr.Image(label="Predicted fields (cropped to the OCR region)", type="pil",
+                           interactive=False)
             gr.HTML(LEGEND_HTML)
         with gr.Column(scale=6):
             summary = gr.HTML()
-            table = gr.Dataframe(headers=TABLE_HEADERS, interactive=False, wrap=True,
-                                 column_widths=["4%", "22%", "18%", "11%", "17%", "14%", "14%"],
-                                 max_height=760,
-                                 label="Fields: calibrated-set state and recommended action")
             what = gr.Markdown()
+    table = gr.Dataframe(headers=TABLE_HEADERS, interactive=False, wrap=True,
+                         column_widths=["4%", "27%", "27%", "8%", "16%", "10%", "8%"],
+                         max_height=760,
+                         label="Fields: calibrated-set state and recommended action")
     return vis, summary, table, what
 
 
 def build_demo() -> gr.Blocks:
-    with gr.Blocks(title="CaliDoc demo") as demo:
+    # uploads and generated files live in Gradio's temp cache; purge them hourly
+    with gr.Blocks(title="CaliDoc demo", delete_cache=(3600, 3600)) as demo:
         gr.Markdown(
             "# CaliDoc: Complete-Field Reliability in Action\n"
             f"WACV 2027 · [GitHub]({GITHUB}) · [Supplement]({SUPPLEMENT}) · "
@@ -419,30 +600,48 @@ def build_demo() -> gr.Blocks:
                 demo.load(load_example, choice, outs)
 
             with gr.Tab("Upload Your Own"):
-                gr.Markdown(
-                    "**CaliDoc does not perform OCR.** The WACV pipeline takes OCR words and "
-                    "bounding boxes as input. Models are dataset-specific: pick the checkpoint "
-                    "whose benchmark matches your document type, and treat out-of-domain results "
-                    "as outside the calibration guarantee.")
+                gr.Markdown("### Upload Your Own Document")
+                gr.HTML(UPLOAD_NOTE_HTML)
                 with gr.Row():
                     with gr.Column(scale=4):
-                        model = gr.Dropdown(list(MODELS), value="CORD (receipts)",
-                                            label="Released model")
-                        image = gr.Image(type="pil", label="Document image")
-                        ocr = gr.File(label="OCR JSON", file_types=[".json"])
-                        with gr.Accordion("Accepted OCR JSON schema", open=False):
+                        doc = gr.File(label="Document image (PNG, JPEG or WEBP)", type="filepath",
+                                      file_types=IMAGE_TYPES + [".pdf"])
+                        gr.Markdown("**OCR:** Automatic OCR runs locally with docTR.")
+                        with gr.Accordion("Advanced OCR options", open=False):
+                            ocr_mode = gr.Radio([OCR_AUTO, OCR_MANUAL], value=OCR_AUTO,
+                                                label="OCR source")
+                            ocr_file = gr.File(label="OCR JSON", file_types=[".json"],
+                                               type="filepath")
                             gr.Markdown(OCR_SCHEMA_MD)
+                        with gr.Accordion("Technical details", open=False):
+                            gr.Markdown(OCR_TECH_MD)
+                        model = gr.Dropdown(list(MODELS), value="CORD (receipts)",
+                                            label="Model (benchmark-specific)")
                         up_btn = gr.Button("Run CaliDoc", variant="primary")
                     with gr.Column(scale=5):
-                        gr.Markdown(" | ".join(f"[{k}](https://huggingface.co/{v})"
-                                               for k, v in MODELS.items()))
+                        preview = gr.Image(label="Document preview", type="pil",
+                                           interactive=False, height=520)
+                        gr.Markdown("Models: " + " · ".join(
+                            f"[{k}](https://huggingface.co/{v})" for k, v in MODELS.items()))
+                ocr_md = gr.Markdown()
+                with gr.Accordion("Detected OCR", open=False):
+                    with gr.Row():
+                        ocr_vis = gr.Image(label="OCR word boxes", type="pil", interactive=False)
+                        ocr_dl = gr.File(label="Download OCR JSON", interactive=False)
                 u_vis, u_summary, u_table, u_what = results_block()
                 with gr.Accordion("Prediction JSON", open=False):
                     u_raw = gr.JSON()
-                up_btn.click(run_upload, [model, image, ocr],
-                             [u_vis, u_summary, u_table, u_what, u_raw])
+                doc.change(preview_document, doc, preview)
+                ocr_file.change(lambda f: OCR_MANUAL if f else OCR_AUTO, ocr_file, ocr_mode)
+                up_btn.click(run_upload, [model, doc, ocr_mode, ocr_file],
+                             [ocr_md, ocr_vis, ocr_dl, u_vis, u_summary, u_table, u_what, u_raw])
     return demo
 
 
 if __name__ == "__main__":
+    import signal
+    import sys
+
+    # turn SIGTERM into a normal exit so the session scratch directory is removed
+    signal.signal(signal.SIGTERM, lambda *_: sys.exit(0))
     build_demo().launch()
