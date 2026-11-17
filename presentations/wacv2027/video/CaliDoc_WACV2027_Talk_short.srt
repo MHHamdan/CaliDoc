@@ -1,0 +1,216 @@
+1
+00:00:00,500 --> 00:00:06,292
+This is CaliDoc, by Mohammed Hamdan and Mohamed
+Cheriet, from the Synchromedia
+
+2
+00:00:06,292 --> 00:00:08,418
+Laboratory at ÉTS Montréal.
+
+3
+00:00:09,080 --> 00:00:15,034
+It asks a simple question: when a document
+extractor comes with a conformal
+
+4
+00:00:15,034 --> 00:00:18,844
+guarantee, what exactly is that
+guarantee about?
+
+5
+00:00:20,240 --> 00:00:27,622
+On SROIE, a strong LayoutLMv3-Large tagger with
+token-level conformal prediction at
+
+6
+00:00:27,622 --> 00:00:31,571
+a 90% target covers 89.8% of tokens.
+
+7
+00:00:32,024 --> 00:00:34,903
+By the usual criterion,
+calibration worked.
+
+8
+00:00:35,356 --> 00:00:39,988
+Yet of 420 gold field spans, not one
+has every token covered.
+
+9
+00:00:40,766 --> 00:00:47,891
+The single marginal threshold is sized for the O
+class, 84% of tokens, so all four
+
+10
+00:00:47,891 --> 00:00:54,930
+field-initial B classes get zero coverage, and
+every field starts with a B token.
+
+11
+00:00:56,330 --> 00:01:02,226
+On a real test receipt, every field's worst word
+lies beyond the token-marginal
+
+12
+00:01:02,226 --> 00:01:07,301
+threshold, yet inside the field thresholds
+that CaliDoc calibrates.
+
+13
+00:01:07,661 --> 00:01:13,895
+So we change the calibrated object to the complete
+field, with the document as the
+
+14
+00:01:13,895 --> 00:01:17,925
+exchangeable unit, and leave the
+extractor untouched.
+
+15
+00:01:19,320 --> 00:01:25,388
+Each span is scored by its worst word, which turns
+full-span coverage into a scalar
+
+16
+00:01:25,388 --> 00:01:25,973
+problem.
+
+17
+00:01:26,553 --> 00:01:32,392
+Conformal risk control over documents then bounds
+the expected fraction of missed
+
+18
+00:01:32,392 --> 00:01:34,483
+fields per document by alpha.
+
+19
+00:01:34,971 --> 00:01:41,377
+That is an expectation: not a promise about any
+single document or field type, and
+
+20
+00:01:41,377 --> 00:01:45,048
+the coverage numbers that follow
+are empirical.
+
+21
+00:01:46,450 --> 00:01:52,421
+Field types with enough calibration spans get
+their own thresholds; low-support
+
+22
+00:01:52,421 --> 00:01:58,014
+types fall back to the pooled threshold and
+inherit only the pooled bound.
+
+23
+00:01:59,410 --> 00:02:08,836
+On SROIE, realized field-miss risk falls from
+1.000 to 0.091, full-span coverage
+
+24
+00:02:08,836 --> 00:02:17,463
+rises from zero to 0.909, and span CovGap falls
+from 90 points to 2.1, for sets
+
+25
+00:02:17,463 --> 00:02:19,460
+about ten percent larger.
+
+26
+00:02:20,122 --> 00:02:25,312
+Where the marginal threshold already worked,
+results stay roughly unchanged.
+
+27
+00:02:25,892 --> 00:02:32,993
+CORD, with sparse field support, pays a 3.2-fold
+set-size cost; a level-calibrated
+
+28
+00:02:32,993 --> 00:02:36,701
+variant reduces it under the
+pooled bound only.
+
+29
+00:02:38,100 --> 00:02:44,432
+The same threshold drives an annotation audit: do
+escaped words concentrate at field
+
+30
+00:02:44,432 --> 00:02:47,899
+boundaries, the signature of
+alignment errors?
+
+31
+00:02:48,479 --> 00:02:54,458
+A conditional randomization null with Holm
+correction answers it, assuming
+
+32
+00:02:54,458 --> 00:03:00,756
+independence across spans, and every finding
+must agree with a document-blocked
+
+33
+00:03:00,756 --> 00:03:01,553
+bootstrap.
+
+34
+00:03:02,950 --> 00:03:08,267
+The audit flags SROIE ADDRESS and COMPANY, and
+nothing on the clean benchmarks.
+
+35
+00:03:08,848 --> 00:03:16,003
+After an independent re-alignment of the labels,
+ADDRESS enrichment falls from 4.07
+
+36
+00:03:16,003 --> 00:03:19,691
+to 0.79, and nothing is rejected.
+
+37
+00:03:20,109 --> 00:03:24,591
+The repair came from re-alignment,
+not from calibration.
+
+38
+00:03:25,990 --> 00:03:33,036
+Closest prior work certifies a representative
+token per entity; CaliDoc certifies
+
+39
+00:03:33,036 --> 00:03:36,903
+the complete field, as a
+document-level risk.
+
+40
+00:03:38,300 --> 00:03:45,486
+The limits: the guarantee is a risk, not a
+coverage; field-conditional calibration
+
+41
+00:03:45,486 --> 00:03:52,322
+is support-limited; fields of two words or fewer
+are untestable; and real-data
+
+42
+00:03:52,322 --> 00:03:54,600
+validation rests on SROIE.
+
+43
+00:03:56,000 --> 00:03:59,332
+Report reliability for the object
+you actually deliver.
+
+44
+00:03:59,913 --> 00:04:05,009
+Code, checkpoints, the supplement and a
+Colab demo are linked.
+
+45
+00:04:05,323 --> 00:04:06,124
+Thank you.
+

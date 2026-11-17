@@ -10,6 +10,7 @@ Mohammed Hamdan and Mohamed Cheriet · Synchromedia Laboratory, École de techno
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20models-CaliDoc%20WACV%202027-ffcc4d)](https://huggingface.co/collections/MHamdan/calidoc-wacv-2027-6ad41a62c6a81846dfeb44b4)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/MHHamdan/CaliDoc/blob/main/notebooks/CaliDoc_WACV2027_Demo.ipynb)
 [![Demo source](https://img.shields.io/badge/demo-Gradio%20source-orange)](demo/gradio)
+[![Talk](https://img.shields.io/badge/talk-slides%20%2B%20video-0f766e)](presentations/wacv2027)
 [![Code license](https://img.shields.io/badge/code-Apache--2.0-blue)](#license)
 [![Weights license](https://img.shields.io/badge/weights-CC%20BY--NC--SA%204.0-orange)](#license)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776ab)
@@ -18,6 +19,12 @@ Mohammed Hamdan and Mohamed Cheriet · Synchromedia Laboratory, École de techno
 > CaliDoc calibrates the complete fields that downstream systems actually consume.
 
 ![CaliDoc overview: a fixed LayoutLMv3 extractor feeds max-token span scores into document-level conformal risk control (SpanCRC); the same pooled threshold drives a boundary-escape annotation audit with a conditional randomization null, Holm control, and document-blocked bootstrap corroboration, validated by independent re-alignment and repair on SROIE.](assets/architecture/calidoc_architecture.svg)
+
+## WACV 2027 Talk
+
+- Slides: [PowerPoint](presentations/wacv2027/CaliDoc_WACV2027_Presentation.pptx) · [PDF](presentations/wacv2027/CaliDoc_WACV2027_Presentation.pdf) · [speaker notes](presentations/wacv2027/CaliDoc_WACV2027_Speaker_Notes.md)
+- Video: [full talk (9:41)](presentations/wacv2027/video/CaliDoc_WACV2027_Talk_full.mp4) · [5-minute version (4:07)](presentations/wacv2027/video/CaliDoc_WACV2027_Talk_short.mp4), with captions. Narration is an AI-generated voice reading the authors' script.
+- Every number in the talk is traced to the paper in the [claim audit](presentations/wacv2027/CaliDoc_WACV2027_Claim_Audit.md).
 
 ## Try CaliDoc in 60 Seconds
 

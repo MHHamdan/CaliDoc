@@ -79,3 +79,9 @@ scripts/cache_large.sh
 scripts/run_multiseed_experiments.sh
 scripts/make_code_supplement.py
 scripts/make_release_zips.py
+
+# ------------------------------------------------------- talk (local-only parts)
+presentations/wacv2027/source/video_cache/
+presentations/wacv2027/source/env.sh
+presentations/wacv2027/CaliDoc_WACV2027_QA.md
+presentations/wacv2027/CaliDoc_WACV2027_Rehearsal_Guide.md

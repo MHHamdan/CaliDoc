@@ -1,0 +1,11 @@
+0:00 Title
+0:19 89.8% token coverage, 0 of 420 fields covered
+0:55 Change the object being calibrated
+1:18 Span score and document-level CRC
+1:45 Field-conditional thresholds with pooled fallback
+1:58 Main results (Table 2, Figure 1a)
+2:37 Boundary-escape test
+3:02 Detected defects and repair validation
+3:25 Closest prior work
+3:37 Limitations
+3:55 Takeaways and resources

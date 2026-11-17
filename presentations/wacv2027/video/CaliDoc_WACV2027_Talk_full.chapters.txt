@@ -1,0 +1,14 @@
+0:00 Title
+0:24 Extraction pipelines consume complete fields
+0:59 89.8% token coverage, 0 of 420 fields covered
+1:51 Change the object being calibrated
+2:34 CaliDoc framework
+3:07 Span score and document-level CRC
+4:17 Field-conditional thresholds with pooled fallback
+4:57 Main results (Table 2, Figure 1a)
+5:48 CORD trade-off
+6:19 Boundary-escape test
+7:09 Detected defects and repair validation
+8:01 Closest prior work
+8:33 Limitations
+9:04 Takeaways and resources
